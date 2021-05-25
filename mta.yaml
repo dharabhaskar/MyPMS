@@ -1,0 +1,80 @@
+ID: MyPMS
+_schema-version: 3.2.0
+version: 0.0.1
+parameters:
+  enable-parallel-deployments: true
+modules:
+  - name: webapp_deployer
+    type: com.sap.application.content
+    path: deployer
+    requires:
+      - name: MyPMS_html5_repo_host
+        parameters:
+          content-target: true
+    build-parameters:
+      build-result: resources
+      requires:
+        - name: uimodule
+          artifacts:
+            - dist/uimodule.zip
+          target-path: resources/
+  - name: MyPMSdestination-content
+    type: com.sap.application.content
+    build-parameters:
+      no-source: true
+    requires:
+      - name: MyPMS_uaa
+        parameters:
+          service-key:
+            name: MyPMS_uaa-key
+      - name: MyPMS_html5_repo_host
+        parameters:
+          service-key:
+            name: MyPMS_html5_repo_host-key
+      - name: MyPMS_destination
+        parameters:
+          content-target: true
+    parameters:
+      content:
+        instance:
+          existing_destinations_policy: update
+          destinations:
+            - Name: MyPMS_html5_repo_host
+              ServiceInstanceName: MyPMS_html5_repo_host
+              ServiceKeyName: MyPMS_html5_repo_host-key
+              sap.cloud.service: MyPMS.service
+            - Name: MyPMS_uaa
+              Authentication: OAuth2UserTokenExchange
+              ServiceInstanceName: MyPMS_uaa
+              ServiceKeyName: MyPMS_uaa-key
+              sap.cloud.service: MyPMS.service
+  - name: uimodule
+    type: html5
+    path: uimodule
+    build-parameters:
+      builder: custom
+      commands:
+        - npm run build:uimodule --prefix ..
+      supported-platforms: []
+resources:
+  - name: MyPMS_destination
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service-plan: lite
+      service: destination
+      config:
+        HTML5Runtime_enabled: true
+        version: 1.0.0
+  - name: MyPMS_html5_repo_host
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service-plan: app-host
+      service: html5-apps-repo
+      config:
+        sizeLimit: 2
+  - name: MyPMS_uaa
+    type: org.cloudfoundry.managed-service
+    parameters:
+      path: ./xs-security.json
+      service-plan: application
+      service: xsuaa

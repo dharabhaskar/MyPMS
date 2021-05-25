@@ -1,0 +1,21 @@
+{
+  "generator-template-ui5-project": {
+    "projectname": "MyPMS",
+    "namespaceUI5": "com.infocus",
+    "platform": "SAP Launchpad service",
+    "viewtype": "XML",
+    "ui5libs": "Content delivery network (SAPUI5)",
+    "newdir": true,
+    "namespaceURI": "com/infocus",
+    "opa5pos": [
+      "Main"
+    ],
+    "opa5Journeys": [
+      "Main"
+    ],
+    "uimodules": [
+      "uimodule"
+    ],
+    "setupCompleted": true
+  }
+}
