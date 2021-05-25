@@ -1,0 +1,31 @@
+<mvc:View controllerName="com.infocus.MyPMS.controller.Launcher" displayBlock="true"
+  xmlns="sap.m"
+  xmlns:l="sap.ui.layout"
+  xmlns:mvc="sap.ui.core.mvc">
+  <App id="Launcher">
+    <pages>
+      <Page id="_IDGenPage1" title="{i18n>title}" showHeader="false">
+        <content>
+          <Panel width="auto" class="sapUiResponsiveMargin" accessibleRole="Region">
+            <headerToolbar>
+              <OverflowToolbar>
+                <Title text="Panel with picture"/>
+              </OverflowToolbar>
+            </headerToolbar>
+            <content>
+              <l:HorizontalLayout>
+                <Image src="{img>/products/pic1}" width="10em" />
+              </l:HorizontalLayout>
+              <Text text="Lorem ipsum dolor st amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat" />
+            </content>
+            <footerToolbar>
+              <OverflowToolbar>
+                  <Button text="Go To Next Page"/>
+              </OverflowToolbar/>
+            </footerToolbar>
+          </Panel>
+        </content>
+      </Page>
+    </pages>
+  </App>
+</mvc:View>
