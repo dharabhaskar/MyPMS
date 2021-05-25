@@ -1,0 +1,40 @@
+{
+  "welcomeFile": "index.html",
+  "routes": [
+    {
+      "path": "/sap/opu/odata",
+      "target": {
+        "type": "destination",
+        "name": "GDG",
+        "entryPath": "/sap/opu/odata"
+      },
+      "description": "GDG"
+    },
+    {
+      "path": "/resources",
+      "target": {
+        "type": "service",
+        "name": "sapui5",
+        "entryPath": "/resources"
+      },
+      "description": "SAPUI5 Resources"
+    },
+    {
+      "path": "/test-resources",
+      "target": {
+        "type": "service",
+        "name": "sapui5",
+        "entryPath": "/test-resources"
+      },
+      "description": "SAPUI5 Test Resources"
+    },
+    {
+      "path": "/destination/ZPMS_NEW_SRV",
+      "target": {
+        "type": "destination",
+        "name": "ZPMS_NEW_SRV"
+      },
+      "description": "ZPMS_NEW_SRV Service"
+    }
+  ]
+}

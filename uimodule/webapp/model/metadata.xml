@@ -1,0 +1,99 @@
+<edmx:Edmx
+    xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx"
+    xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata"
+    xmlns:sap="http://www.sap.com/Protocols/SAPData" Version="1.0">
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema
+            xmlns="http://schemas.microsoft.com/ado/2008/09/edm" Namespace="ZPMS_NEW_SRV" xml:lang="en" sap:schema-version="1">
+            <EntityType Name="Header" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="ImPernr"/>
+                    <PropertyRef Name="ImEndda"/>
+                    <PropertyRef Name="ImBegda"/>
+                </Key>
+                <Property Name="ExDob" Type="Edm.DateTime" Nullable="false" Precision="7" sap:unicode="false" sap:label="Date" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ExDoj" Type="Edm.DateTime" Nullable="false" Precision="7" sap:unicode="false" sap:label="Date" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ImPernr" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="Personnel No." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ImEndda" Type="Edm.DateTime" Nullable="false" Precision="7" sap:unicode="false" sap:label="Date" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ImBegda" Type="Edm.DateTime" Nullable="false" Precision="7" sap:unicode="false" sap:label="Date" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ExServiceDeptYear" Type="Edm.Decimal" Nullable="false" Precision="6" Scale="4" sap:unicode="false" sap:label="Service cr. in Year" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ExServiceDeptMonth" Type="Edm.Decimal" Nullable="false" Precision="8" Scale="4" sap:unicode="false" sap:label="Service cr. in Month" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ExServiceDeptDay" Type="Edm.Decimal" Nullable="false" Precision="6" Scale="0" sap:unicode="false" sap:label="Service cr. in Date" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ExServiceCompYear" Type="Edm.Decimal" Nullable="false" Precision="6" Scale="4" sap:unicode="false" sap:label="Service cr. in Year" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ExServiceCompMonth" Type="Edm.Decimal" Nullable="false" Precision="8" Scale="4" sap:unicode="false" sap:label="Service cr. in Month" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ExServiceCompDay" Type="Edm.Decimal" Nullable="false" Precision="6" Scale="0" sap:unicode="false" sap:label="Service cr. in Date" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ExQualification" Type="Edm.String" Nullable="false" MaxLength="100" sap:unicode="false" sap:label="Character 100" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ExPromYear" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Fiscal Year" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ExPromPeriodYear" Type="Edm.Decimal" Nullable="false" Precision="6" Scale="4" sap:unicode="false" sap:label="Service cr. in Year" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ExPromPeriodMonth" Type="Edm.Decimal" Nullable="false" Precision="8" Scale="4" sap:unicode="false" sap:label="Service cr. in Month" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ExPromPeriodDay" Type="Edm.Decimal" Nullable="false" Precision="6" Scale="0" sap:unicode="false" sap:label="Service cr. in Date" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ExPeriod" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Payroll Period" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ExName" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Empl./appl.name" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ExLocation" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:label="PA text" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ExHol" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="Head of the location" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ExHod" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="Head of the Departme" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ExDivision" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:label="PA text" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ExDesignation" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Name" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ExDepartment" Type="Edm.String" Nullable="false" MaxLength="25" sap:unicode="false" sap:label="Org.Unit Short Text" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ExCurrBasic" Type="Edm.Decimal" Nullable="false" Precision="10" Scale="3" sap:unicode="false" sap:label="Amount" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ExAgeYear" Type="Edm.Decimal" Nullable="false" Precision="6" Scale="4" sap:unicode="false" sap:label="Service cr. in Year" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ExAgeMonth" Type="Edm.Decimal" Nullable="false" Precision="8" Scale="4" sap:unicode="false" sap:label="Service cr. in Month" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ExAgeDay" Type="Edm.Decimal" Nullable="false" Precision="6" Scale="0" sap:unicode="false" sap:label="Service cr. in Date" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <NavigationProperty Name="ToItems" Relationship="ZPMS_NEW_SRV.ToItems" FromRole="FromRole_ToItems" ToRole="ToRole_ToItems"/>
+            </EntityType>
+            <EntityType Name="ItPosition" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Pernr"/>
+                </Key>
+                <Property Name="PeriodYear" Type="Edm.Decimal" Nullable="false" Precision="6" Scale="4" sap:unicode="false" sap:label="Service cr. in Year" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Pernr" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="Personnel No." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="PeriodMonth" Type="Edm.Decimal" Nullable="false" Precision="8" Scale="4" sap:unicode="false" sap:label="Service cr. in Month" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Position" Type="Edm.String" Nullable="false" MaxLength="25" sap:unicode="false" sap:label="Position Short Text" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="PeriodDay" Type="Edm.Decimal" Nullable="false" Precision="6" Scale="0" sap:unicode="false" sap:label="Service cr. in Date" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Location" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="Location" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Begda" Type="Edm.DateTime" Nullable="false" Precision="7" sap:unicode="false" sap:label="Start Date" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Endda" Type="Edm.DateTime" Nullable="false" Precision="7" sap:unicode="false" sap:label="End Date" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="EmpDetails" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="ImUserId"/>
+                </Key>
+                <Property Name="ImUserId" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:label="System ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ExConfFlag" Type="Edm.Boolean" Nullable="false" sap:unicode="false" sap:label="TRUE" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ExEmpSubgroup" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="EE subgroup" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ExFormType" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="PMS Form Type" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ExPernr" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="Personnel No." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ExUserId" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:label="System ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <Association Name="ToItems" sap:content-version="1">
+                <End Type="ZPMS_NEW_SRV.Header" Multiplicity="1" Role="FromRole_ToItems"/>
+                <End Type="ZPMS_NEW_SRV.ItPosition" Multiplicity="*" Role="ToRole_ToItems"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_ToItems">
+                        <PropertyRef Name="ImBegda"/>
+                        <PropertyRef Name="ImEndda"/>
+                        <PropertyRef Name="ImPernr"/>
+                    </Principal>
+                    <Dependent Role="ToRole_ToItems">
+                        <PropertyRef Name="Begda"/>
+                        <PropertyRef Name="Endda"/>
+                        <PropertyRef Name="Pernr"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <EntityContainer Name="ZPMS_NEW_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx">
+                <EntitySet Name="HeaderSet" EntityType="ZPMS_NEW_SRV.Header" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="ItPositionSet" EntityType="ZPMS_NEW_SRV.ItPosition" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="EmpDetailsSet" EntityType="ZPMS_NEW_SRV.EmpDetails" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <AssociationSet Name="ToItemsSet" Association="ZPMS_NEW_SRV.ToItems" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="HeaderSet" Role="FromRole_ToItems"/>
+                    <End EntitySet="ItPositionSet" Role="ToRole_ToItems"/>
+                </AssociationSet>
+            </EntityContainer>
+            <atom:link
+                xmlns:atom="http://www.w3.org/2005/Atom" rel="self" href="http://gilfioritest.graphiteindia.com:44300/sap/opu/odata/sap/ZPMS_NEW_SRV/$metadata"/>
+                <atom:link
+                    xmlns:atom="http://www.w3.org/2005/Atom" rel="latest-version" href="http://gilfioritest.graphiteindia.com:44300/sap/opu/odata/sap/ZPMS_NEW_SRV/$metadata"/>
+                </Schema>
+            </edmx:DataServices>
+        </edmx:Edmx>
