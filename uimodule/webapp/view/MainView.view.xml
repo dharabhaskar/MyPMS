@@ -1,204 +1,202 @@
 <mvc:View controllerName="com.infocus.MyPMS.controller.MainView" displayBlock="true" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.uxap"
 	xmlns:layout="sap.ui.layout" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form" xmlns:m="sap.m" xmlns:table="sap.ui.table"
 	xmlns:appraisal="com.infocus.GraphitePms.SharedBlocks.appraisal" height="100%">
-	<m:App>
-		<m:pages>
-			<m:Page id="emp_selfappr_page" showHeader="false">
-				<m:content>
-					<ObjectPageLayout id="ObjectPageLayout" showTitleInHeaderContent="true" upperCaseAnchorBar="false">
-						<!-- Collapsed Header Part -->
-						<headerTitle>
-							<ObjectPageDynamicHeaderTitle>
-								<expandedHeading>
-									<m:Title text="Denise Smith" wrapping="true"/>
-								</expandedHeading>
-								<snappedHeading>
-									<m:FlexBox fitContainer="true" alignItems="Center">
-										<m:Avatar src="{/Employee/img}" class="sapUiTinyMarginEnd"/>
-										<m:Title text="Denise Smith" wrapping="true"/>
-									</m:FlexBox>
-								</snappedHeading>
-								<expandedContent>
-									<m:Text text="Senior Developer"/>
-								</expandedContent>
-								<snappedContent>
-									<m:Text text="Senior Developer"/>
-								</snappedContent>
-								<snappedTitleOnMobile>
-									<m:Title text="Header Title On Phone"/>
-								</snappedTitleOnMobile>
-								<actions>
-									<ObjectPageHeaderActionButton text="Save" type="Emphasized" hideText="false"/>
-									<ObjectPageHeaderActionButton type="Emphasized" text="Save as Draft" hideText="false" hideIcon="true"/>
-								</actions>
-							</ObjectPageDynamicHeaderTitle>
-						</headerTitle>
-						<!-- Expanded Header Part -->
-						<headerContent>
-							<m:FlexBox wrap="Wrap">
-								<m:Avatar src="{/Employee/img}" displaySize="L" class="sapUiTinyMarginEnd"/>
-								<layout:VerticalLayout class="sapUiSmallMarginBeginEnd">
-									<m:ObjectStatus title="Qualifications" text=""/>
-									<m:ObjectStatus title="Period of last promotion" text="2 Years"/>
-									<m:ObjectStatus title="Year of last promotion" text="2018"/>
-									<m:ObjectStatus title="Date of Birth" text="18 Oct 1980"/>
-								</layout:VerticalLayout>
-								<layout:VerticalLayout class="sapUiSmallMarginBeginEnd">
-									<m:ObjectStatus title="Department" text=""/>
-									<m:ObjectStatus title="Service in Department" text=""/>
-									<m:ObjectStatus title="Current Basic Pay" text=""/>
-									<m:ObjectStatus title="Period of Review" text=""/>
-								</layout:VerticalLayout>
-								<layout:VerticalLayout class="sapUiSmallMarginBeginEnd">
-									<m:ObjectStatus title="Division" text="Developement"/>
-									<m:ObjectStatus title="Head of Department" text=""/>
-									<m:ObjectStatus title="Head of Location" text=""/>
-								</layout:VerticalLayout>
-								<!--   <layout:VerticalLayout class="sapUiSmallMarginBeginEnd">
+	<m:Page id="emp_selfappr_page" showHeader="false">
+		<m:content>
+			<ObjectPageLayout id="ObjectPageLayout" showTitleInHeaderContent="true" upperCaseAnchorBar="false">
+				<!-- Collapsed Header Part -->
+				<headerTitle>
+					<ObjectPageDynamicHeaderTitle>
+						<expandedHeading>
+							<m:Title text="Denise Smith" wrapping="true"/>
+						</expandedHeading>
+						<snappedHeading>
+							<m:FlexBox fitContainer="true" alignItems="Center">
+								<m:Avatar src="{/Employee/img}" class="sapUiTinyMarginEnd"/>
+								<m:Title text="Denise Smith" wrapping="true"/>
+							</m:FlexBox>
+						</snappedHeading>
+						<expandedContent>
+							<m:Text text="Senior Developer"/>
+						</expandedContent>
+						<snappedContent>
+							<m:Text text="Senior Developer"/>
+						</snappedContent>
+						<snappedTitleOnMobile>
+							<m:Title text="Header Title On Phone"/>
+						</snappedTitleOnMobile>
+						<actions>
+							<ObjectPageHeaderActionButton text="Save" type="Emphasized" hideText="false"/>
+							<ObjectPageHeaderActionButton type="Emphasized" text="Save as Draft" hideText="false" hideIcon="true"/>
+						</actions>
+					</ObjectPageDynamicHeaderTitle>
+				</headerTitle>
+				<!-- Expanded Header Part -->
+				<headerContent>
+					<m:FlexBox wrap="Wrap">
+						<m:Avatar src="{/Employee/img}" displaySize="L" class="sapUiTinyMarginEnd"/>
+						<layout:VerticalLayout class="sapUiSmallMarginBeginEnd">
+							<m:ObjectStatus title="Qualifications" text=""/>
+							<m:ObjectStatus title="Period of last promotion" text="2 Years"/>
+							<m:ObjectStatus title="Year of last promotion" text="2018"/>
+							<m:ObjectStatus title="Date of Birth" text="18 Oct 1980"/>
+						</layout:VerticalLayout>
+						<layout:VerticalLayout class="sapUiSmallMarginBeginEnd">
+							<m:ObjectStatus title="Department" text=""/>
+							<m:ObjectStatus title="Service in Department" text=""/>
+							<m:ObjectStatus title="Current Basic Pay" text=""/>
+							<m:ObjectStatus title="Period of Review" text=""/>
+						</layout:VerticalLayout>
+						<layout:VerticalLayout class="sapUiSmallMarginBeginEnd">
+							<m:ObjectStatus title="Division" text="Developement"/>
+							<m:ObjectStatus title="Head of Department" text=""/>
+							<m:ObjectStatus title="Head of Location" text=""/>
+						</layout:VerticalLayout>
+						<!--   <layout:VerticalLayout class="sapUiSmallMarginBeginEnd">
                     <layout:layoutData>
                         <ObjectPageHeaderLayoutData visibleS="false" visibleM="false" />
                     </layout:layoutData>
                     <m:ObjectStatus text="Senior UI Developer" state="Success" />
                     <m:RatingIndicator maxValue="6" value="5" tooltip="Rating Tooltip" />
                 </layout:VerticalLayout> -->
-								<m:VBox width="548px" class="sapUiSmallMarginBottom">
-									<m:Title class="sapUiTinyMarginBottom">
-										<m:Link text="Details of last three positions (Excluding present)"/>
-									</m:Title>
-									<table:Table selectionMode="None" visibleRowCount="3" id="tab">
-										<table:columns>
-											<table:Column width="11rem">
-												<m:Label text="Position"/>
-												<table:template>
-													<m:Text text="{Name}" wrapping="false"/>
-												</table:template>
-											</table:Column>
-											<table:Column width="11rem">
-												<m:Label text="Period"/>
-												<table:template>
-													<m:Text text="{Name}" wrapping="false"/>
-												</table:template>
-											</table:Column>
-											<table:Column width="11rem">
-												<m:Label text="Location"/>
-												<table:template>
-													<m:Text text="{Name}" wrapping="false"/>
-												</table:template>
-											</table:Column>
-										</table:columns>
-									</table:Table>
-								</m:VBox>
-							</m:FlexBox>
-						</headerContent>
-						<sections>
-							<!-- Achivements Page Section -->
-							<ObjectPageSection titleUppercase="false" id="Achievement" title="Achievements">
-								<subSections>
-									<ObjectPageSubSection titleUppercase="false">
-										<f:SimpleForm editable="true" layout="ColumnLayout" columnsM="1" columnsL="1" columnsXL="1">
-											<f:content>
-												<m:Label text="Achivement 1">
-													<m:layoutData>
-														<f:ColumnElementData cellsSmall="12" cellsLarge="12"/>
-													</m:layoutData>
-												</m:Label>
-												<m:TextArea rows="2">
-													<m:layoutData>
-														<f:ColumnElementData cellsSmall="12" cellsLarge="12"/>
-													</m:layoutData>
-												</m:TextArea>
-												<m:Label text="Achivement 2">
-													<m:layoutData>
-														<f:ColumnElementData cellsSmall="12" cellsLarge="12"/>
-													</m:layoutData>
-												</m:Label>
-												<m:TextArea rows="2">
-													<m:layoutData>
-														<f:ColumnElementData cellsSmall="12" cellsLarge="12"/>
-													</m:layoutData>
-												</m:TextArea>
-												<m:Label text="Achivement 3">
-													<m:layoutData>
-														<f:ColumnElementData cellsSmall="12" cellsLarge="12"/>
-													</m:layoutData>
-												</m:Label>
-												<m:TextArea rows="2">
-													<m:layoutData>
-														<f:ColumnElementData cellsSmall="12" cellsLarge="12"/>
-													</m:layoutData>
-												</m:TextArea>
-											</f:content>
-										</f:SimpleForm>
-									</ObjectPageSubSection>
-								</subSections>
-							</ObjectPageSection>
-							<!-- Constraints Page Section -->
-							<ObjectPageSection titleUppercase="false" id="Constraints" title="Constraints">
-								<subSections>
-									<ObjectPageSubSection titleUppercase="false">
-										<f:SimpleForm editable="true" layout="ColumnLayout" columnsM="1" columnsL="1" columnsXL="1">
-											<f:content>
-												<m:Label text="Constraints faced during performance, if any">
-													<m:layoutData>
-														<f:ColumnElementData cellsSmall="12" cellsLarge="12"/>
-													</m:layoutData>
-												</m:Label>
-												<m:TextArea rows="4">
-													<m:layoutData>
-														<f:ColumnElementData cellsSmall="12" cellsLarge="12"/>
-													</m:layoutData>
-												</m:TextArea>
-											</f:content>
-										</f:SimpleForm>
-									</ObjectPageSubSection>
-								</subSections>
-							</ObjectPageSection>
-							<!-- Constraints Page Section -->
-							<ObjectPageSection titleUppercase="false" id="Failures" title="Major Failures">
-								<subSections>
-									<ObjectPageSubSection titleUppercase="false">
-										<f:SimpleForm editable="true" layout="ColumnLayout" columnsM="1" columnsL="1" columnsXL="1">
-											<f:content>
-												<m:Label text="Major Failures (Not less than two)">
-													<m:layoutData>
-														<f:ColumnElementData cellsSmall="12" cellsLarge="12"/>
-													</m:layoutData>
-												</m:Label>
-												<m:TextArea rows="4">
-													<m:layoutData>
-														<f:ColumnElementData cellsSmall="12" cellsLarge="12"/>
-													</m:layoutData>
-												</m:TextArea>
-											</f:content>
-										</f:SimpleForm>
-									</ObjectPageSubSection>
-								</subSections>
-							</ObjectPageSection>
-							<!-- Training and Development Page Section -->
-							<ObjectPageSection titleUppercase="false" id="Training" title="Training &amp; Development">
-								<subSections>
-									<ObjectPageSubSection titleUppercase="false">
-										<f:SimpleForm editable="true" layout="ColumnLayout" columnsM="1" columnsL="1" columnsXL="1">
-											<f:content>
-												<m:Label text="Training &amp; Development needs required for being more effective">
-													<m:layoutData>
-														<f:ColumnElementData cellsSmall="12" cellsLarge="12"/>
-													</m:layoutData>
-												</m:Label>
-												<m:TextArea rows="4">
-													<m:layoutData>
-														<f:ColumnElementData cellsSmall="12" cellsLarge="12"/>
-													</m:layoutData>
-												</m:TextArea>
-											</f:content>
-										</f:SimpleForm>
-									</ObjectPageSubSection>
-								</subSections>
-							</ObjectPageSection>
-						</sections>
-					</ObjectPageLayout>
-				</m:content>
-				<!-- <m:footer>
+						<m:VBox width="548px" class="sapUiSmallMarginBottom">
+							<m:Title class="sapUiTinyMarginBottom">
+								<m:Link text="Details of last three positions (Excluding present)"/>
+							</m:Title>
+							<table:Table selectionMode="None" visibleRowCount="3" id="tab">
+								<table:columns>
+									<table:Column width="11rem">
+										<m:Label text="Position"/>
+										<table:template>
+											<m:Text text="{Name}" wrapping="false"/>
+										</table:template>
+									</table:Column>
+									<table:Column width="11rem">
+										<m:Label text="Period"/>
+										<table:template>
+											<m:Text text="{Name}" wrapping="false"/>
+										</table:template>
+									</table:Column>
+									<table:Column width="11rem">
+										<m:Label text="Location"/>
+										<table:template>
+											<m:Text text="{Name}" wrapping="false"/>
+										</table:template>
+									</table:Column>
+								</table:columns>
+							</table:Table>
+						</m:VBox>
+					</m:FlexBox>
+				</headerContent>
+				<sections>
+					<!-- Achivements Page Section -->
+					<ObjectPageSection titleUppercase="false" id="Achievement" title="Achievements">
+						<subSections>
+							<ObjectPageSubSection titleUppercase="false">
+								<f:SimpleForm editable="true" layout="ColumnLayout" columnsM="1" columnsL="1" columnsXL="1">
+									<f:content>
+										<m:Label text="Achivement 1">
+											<m:layoutData>
+												<f:ColumnElementData cellsSmall="12" cellsLarge="12"/>
+											</m:layoutData>
+										</m:Label>
+										<m:TextArea rows="2">
+											<m:layoutData>
+												<f:ColumnElementData cellsSmall="12" cellsLarge="12"/>
+											</m:layoutData>
+										</m:TextArea>
+										<m:Label text="Achivement 2">
+											<m:layoutData>
+												<f:ColumnElementData cellsSmall="12" cellsLarge="12"/>
+											</m:layoutData>
+										</m:Label>
+										<m:TextArea rows="2">
+											<m:layoutData>
+												<f:ColumnElementData cellsSmall="12" cellsLarge="12"/>
+											</m:layoutData>
+										</m:TextArea>
+										<m:Label text="Achivement 3">
+											<m:layoutData>
+												<f:ColumnElementData cellsSmall="12" cellsLarge="12"/>
+											</m:layoutData>
+										</m:Label>
+										<m:TextArea rows="2">
+											<m:layoutData>
+												<f:ColumnElementData cellsSmall="12" cellsLarge="12"/>
+											</m:layoutData>
+										</m:TextArea>
+									</f:content>
+								</f:SimpleForm>
+							</ObjectPageSubSection>
+						</subSections>
+					</ObjectPageSection>
+					<!-- Constraints Page Section -->
+					<ObjectPageSection titleUppercase="false" id="Constraints" title="Constraints">
+						<subSections>
+							<ObjectPageSubSection titleUppercase="false">
+								<f:SimpleForm editable="true" layout="ColumnLayout" columnsM="1" columnsL="1" columnsXL="1">
+									<f:content>
+										<m:Label text="Constraints faced during performance, if any">
+											<m:layoutData>
+												<f:ColumnElementData cellsSmall="12" cellsLarge="12"/>
+											</m:layoutData>
+										</m:Label>
+										<m:TextArea rows="4">
+											<m:layoutData>
+												<f:ColumnElementData cellsSmall="12" cellsLarge="12"/>
+											</m:layoutData>
+										</m:TextArea>
+									</f:content>
+								</f:SimpleForm>
+							</ObjectPageSubSection>
+						</subSections>
+					</ObjectPageSection>
+					<!-- Constraints Page Section -->
+					<ObjectPageSection titleUppercase="false" id="Failures" title="Major Failures">
+						<subSections>
+							<ObjectPageSubSection titleUppercase="false">
+								<f:SimpleForm editable="true" layout="ColumnLayout" columnsM="1" columnsL="1" columnsXL="1">
+									<f:content>
+										<m:Label text="Major Failures (Not less than two)">
+											<m:layoutData>
+												<f:ColumnElementData cellsSmall="12" cellsLarge="12"/>
+											</m:layoutData>
+										</m:Label>
+										<m:TextArea rows="4">
+											<m:layoutData>
+												<f:ColumnElementData cellsSmall="12" cellsLarge="12"/>
+											</m:layoutData>
+										</m:TextArea>
+									</f:content>
+								</f:SimpleForm>
+							</ObjectPageSubSection>
+						</subSections>
+					</ObjectPageSection>
+					<!-- Training and Development Page Section -->
+					<ObjectPageSection titleUppercase="false" id="Training" title="Training &amp; Development">
+						<subSections>
+							<ObjectPageSubSection titleUppercase="false">
+								<f:SimpleForm editable="true" layout="ColumnLayout" columnsM="1" columnsL="1" columnsXL="1">
+									<f:content>
+										<m:Label text="Training &amp; Development needs required for being more effective">
+											<m:layoutData>
+												<f:ColumnElementData cellsSmall="12" cellsLarge="12"/>
+											</m:layoutData>
+										</m:Label>
+										<m:TextArea rows="4">
+											<m:layoutData>
+												<f:ColumnElementData cellsSmall="12" cellsLarge="12"/>
+											</m:layoutData>
+										</m:TextArea>
+									</f:content>
+								</f:SimpleForm>
+							</ObjectPageSubSection>
+						</subSections>
+					</ObjectPageSection>
+				</sections>
+			</ObjectPageLayout>
+		</m:content>
+		<!-- <m:footer>
       <m:OverflowToolbar id="otbFooter">
         <m:ToolbarSpacer/>
         <m:Button type="Emphasized" text="Save As Draft"/>
@@ -206,7 +204,5 @@
 
       </m:OverflowToolbar>
     </m:footer> -->
-			</m:Page>
-		</m:pages>
-	</m:App>
+	</m:Page>
 </mvc:View>

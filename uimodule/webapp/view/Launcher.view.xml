@@ -1,7 +1,7 @@
 <mvc:View controllerName="com.infocus.MyPMS.controller.Launcher" displayBlock="true" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.uxap"
 	xmlns:layout="sap.ui.layout" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form" xmlns:m="sap.m" xmlns:table="sap.ui.table"
 	xmlns:appraisal="com.infocus.GraphitePms.SharedBlocks.appraisal" height="100%">
-	<m:App>
+	<m:App id="idAppControl">
 		<m:pages>
 			<m:Page id="emp_selfappr_page" showHeader="false">
 				<m:content>
