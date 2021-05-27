@@ -23,7 +23,7 @@ sap.ui.define([
 							onClose: function() {}
 						});
 					} else {
-						console.log("You can eligible for PMS")
+						console.log("You are eligible for PMS")
 						console.log(_self.getOwnerComponent().getRouter());
 						_self.getOwnerComponent().getRouter().navTo("MainView");
 					}

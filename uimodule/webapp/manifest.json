@@ -60,7 +60,7 @@
 	"sap.ui5": {
 		"flexEnabled": true,
 		"rootView": {
-			"viewName": "com.infocus.MyPMS.view.Launcher",
+			"viewName": "com.infocus.MyPMS.view.MainView",
 			"type": "XML",
 			"async": true,
 			"id": "idAppControl"
@@ -108,13 +108,13 @@
 				"routerClass": "sap.m.routing.Router",
 				"viewType": "XML",
 				"viewPath": "com.infocus.MyPMS.view",
-				"controlId": "idAppControl",
+				"controlId": "rootControl",
 				"controlAggregation": "pages",
 				"async": true
 			},
 			"routes": [
 				{
-					"name": "RouteMainView",
+					"name": "MainView",
 					"pattern": "RouteMainView",
 					"target": [
 						"TargetMainView"
@@ -131,11 +131,11 @@
 			"targets": {
 				"TargetMainView": {
 					"viewType": "XML",
-					"viewName": "MainView"
+					"viewName": "MainView",
+					"viewLevel": 1
 				},
 				"TargetLauncher": {
 					"viewType": "XML",
-					"viewLevel": 1,
 					"viewId": "idAppControl",
 					"viewName": "Launcher"
 				}
