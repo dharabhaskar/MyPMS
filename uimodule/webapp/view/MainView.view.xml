@@ -6,17 +6,20 @@
 			<m:content>
 				<m:VBox class="sapUiSmallMargin">
 					<m:ObjectHeader id="objHeader" icon="{/Employee/img}" iconDensityAware="false" iconAlt="Denise Smith" imageShape="Circle" responsive="true"
-						title="Denise Smith" intro="Senior Developer" class="sapUiResponsivePadding--header">
-						<m:ObjectAttribute title="Qualifications" text="DeniseSmith@sap.com" active="true"/>
-						<m:ObjectAttribute title="Period of last promotion" text="2 Years"/>
-						<m:ObjectAttribute title="Year of last promotion" text="2019"/>
-						<m:ObjectAttribute title="Date of Birth" text="19th Oct 1980"/>
-						<m:ObjectAttribute title="Department" text=""/>
-						<m:ObjectAttribute title="Service in Department" text=""/>
-						<m:ObjectAttribute title="Current Basic Pay" text=""/>
-						<m:ObjectAttribute title="Period of Review" text=""/>
-						<m:ObjectAttribute title="Division" text=""/>
-						<m:ObjectAttribute title="Location" text="Kolkata"/>
+						title="{emp>/ExName}" intro="{emp>/ExDesignation}" class="sapUiResponsivePadding--header">
+						
+						<m:ObjectAttribute title="Period of last promotion" text="{emp>/PeriodOfLastPromotion}"/>
+						<m:ObjectAttribute title="Year of last promotion" text="{emp>/ExPromYear}"/>
+						<m:ObjectAttribute title="Date of Birth" text="{emp>/ExDOBText}"/>
+						<m:ObjectAttribute title="Qualifications" text="{emp>/ExQualification}"/>
+						
+						<m:ObjectAttribute title="Department" text="{emp>/ExDepartment}"/>
+						<m:ObjectAttribute title="Service in Department" text="{emp>/ServiceInDepartment}"/>
+						<m:ObjectAttribute title="Current Basic Pay" text="{emp>/ExCurrBasic}"/>
+						<m:ObjectAttribute title="Period of Review" text="{emp>/ExPeriod}"/>
+						<m:ObjectAttribute title="Division" text="{emp>/ExDivision}"/>
+						<m:ObjectAttribute title="Location" text="{emp>/ExLocation}"/>
+						
 					</m:ObjectHeader>
 					<m:Panel headerText="Self Appraisal">
 						<f:SimpleForm editable="true" layout="ColumnLayout" columnsM="1" columnsL="1" columnsXL="1">

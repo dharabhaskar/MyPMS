@@ -24,8 +24,8 @@
 			}
 		},
 		"dataSources": {
-			"ZPMS_NEW_SRV": {
-				"uri": "/sap/opu/odata/sap/ZPMS_NEW_SRV/",
+			"ZPMS_SELF_SRV": {
+				"uri": "/sap/opu/odata/sap/ZPMS_SELF_SRV/",
 				"type": "OData",
 				"settings": {
 					"odataVersion": "2.0",
@@ -85,14 +85,14 @@
 				}
 			},
 			"": {
-				"uri": "/sap/opu/odata/sap/ZPMS_NEW_SRV/",
+				"uri": "/sap/opu/odata/sap/ZPMS_SELF_SRV/",
 				"type": "sap.ui.model.odata.v2.ODataModel",
 				"settings": {
 					"defaultOperationMode": "Server",
 					"defaultBuindingMode": "OneWay",
 					"defaultCountMode": "Request"
 				},
-				"dataSource": "ZPMS_NEW_SRV",
+				"dataSource": "ZPMS_SELF_SRV",
 				"preload": true
 			}
 		},
