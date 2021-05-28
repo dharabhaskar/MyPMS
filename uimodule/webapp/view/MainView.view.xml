@@ -19,7 +19,7 @@
 						<m:ObjectAttribute title="Location" text="Kolkata"/>
 					</m:ObjectHeader>
 					<m:Panel headerText="Self Appraisal">
-					<!--	<f:SimpleForm editable="true" layout="ColumnLayout" columnsM="1" columnsL="1" columnsXL="1">
+						<f:SimpleForm editable="true" layout="ColumnLayout" columnsM="1" columnsL="1" columnsXL="1">
 							<f:content>
 								<m:Label text="Achivement 1">
 									<m:layoutData>
@@ -80,7 +80,7 @@
 									</m:layoutData>
 								</m:TextArea>
 							</f:content>
-						</f:SimpleForm>-->
+						</f:SimpleForm>
 					</m:Panel>
 				</m:VBox>
 			</m:content>

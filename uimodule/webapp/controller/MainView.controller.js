@@ -8,85 +8,39 @@ sap.ui.define([
 		onInit: function() {
 			var _self = this;
 			var _model = _self.getView().getModel();
-			var empDetailSet = "/ConcurrentEmploymentSet";
+			
 
 			sap.ui.core.BusyIndicator.show();
-			_model.read(empDetailSet, {
+
+			//Check whether the loggedIn employee is Eligible for PMS.
+			//=======================================================
+			var eligibilityCheckServiceURL = "/EmpDetailsSet('HCM_ESS')";
+			_model.read(eligibilityCheckServiceURL, {
+				method: "GET",
 				success: function(response) {
-					sap.ui.core.BusyIndicator.hide();
-					
 					console.log(response);
-					var empId = response.results[0].Pernr;
-					console.log("Employee ID: "+empId);
-					
 
-					//var confFlag = response.ExConfFlag;
-					/*var confFlag = true;
-					if (confFlag == false) {
-						MessageBox.alert("You are not eligible for PMS", {
-							actions: [MessageBox.Action.OK],
-							onClose: function() {}
-						});
-					} else {*/
-						// console.log("You are eligible for PMS")
-						// var empId = response.ExPernr;
-						//console.log(_self.getOwnerComponent().getRouter());
-						
-						
-						// var headerContentURL="/HeaderSet?$filter=(ImPernr eq '40003007' and ImBegda eq datetime'2021-04-01T00:00:00' and ImEndda eq datetime'2021-05-18T00:00:00')&$expand=ToItems"
-						
-						
-						/*var headerContentURL = "/HeaderSet(ImPernr='" + empId +
-								"',ImBegda=datetime'2021-05-18T00:00:00',ImEndda=datetime'2021-06-30T00:00:00')?$expand=ToItems"*/
-						/*var headerContentURL = "/HeaderSet"
-						_model.callFunction(headerContentURL, {
-							method: "GET",
-							urlParameters: {
-								"ImPernr": ImPernr,
-								"ImBegda":"2021-05-18T00:00:00",
-								"ImEndda":"2021-06-30T00:00:00"
-							},
-							success: function(response) {
-								console.log(response);
-							},
-							error: function(error) {
-								console.log(error);
-							}
-						});*/
-						
-						// var oHeader = _self.getView().byId("objHeader");
 					
-						// var oFilters = [
-						// 	new sap.ui.model.Filter("ImPernr","EQ", "40003007"),
-						// 	new sap.ui.model.Filter("ImBegda","EQ", "datetime'2021-04-01T00:00:00'"),
-						// 	new sap.ui.model.Filter("ImEndda","EQ", "datetime'2021-06-30T00:00:00'")
-						// ];
-						
-						// //oHeader.setModel(this.getModel());
-						// oHeader.bindItems("/HeaderSet",null,null,oFilters);
-						
-					/*	var headerContentURL="/HeaderSet?$filter=ImPernr eq '40003007' and ImBegda eq datetime'2021-04-01T00:00:00' and ImEndda eq datetime'2021-05-18T00:00:00'&$expand=ToItems";
-												
-						_model.read(headerContentURL, {
-							success: function(response) {
-								console.log(response);
-							},
-							error: function(error) {
-								console.log(error);
-							}
-						});*/
-						
-						
-						
-						
-						
-						
-						
-					// }
+					//Get the employment details set
+					//===========================================================
+					var employmentSetURL = "/ConcurrentEmploymentSet";
+					_model.read(employmentSetURL, {
+						success: function(response) {
+							sap.ui.core.BusyIndicator.hide();
 
+							console.log(response);
+							var empId = response.results[0].Pernr;
+							console.log("Employee ID: " + empId);
+
+						},
+						error: function() {
+							console.log('Data fetch error');
+						}
+					});
+					//===========================================================
 				},
-				error: function() {
-					console.log('Data fetch error');
+				error: function(error) {
+					console.log(error);
 				}
 			});
 		}
