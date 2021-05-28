@@ -5,7 +5,7 @@
 		<m:Page id="emp_selfappr_page" showHeader="false" title="Self Appraisal">
 			<m:content>
 				<m:VBox class="sapUiSmallMargin">
-					<m:ObjectHeader icon="{/Employee/img}" iconDensityAware="false" iconAlt="Denise Smith" imageShape="Circle" responsive="true"
+					<m:ObjectHeader id="objHeader" icon="{/Employee/img}" iconDensityAware="false" iconAlt="Denise Smith" imageShape="Circle" responsive="true"
 						title="Denise Smith" intro="Senior Developer" class="sapUiResponsivePadding--header">
 						<m:ObjectAttribute title="Qualifications" text="DeniseSmith@sap.com" active="true"/>
 						<m:ObjectAttribute title="Period of last promotion" text="2 Years"/>
