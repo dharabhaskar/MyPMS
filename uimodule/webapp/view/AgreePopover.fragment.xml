@@ -1,0 +1,26 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<Popover
+		id="myPopover"
+		title="Confirm"
+		class="sapUiResponsivePadding--header sapUiResponsivePadding--footer"
+		placement="Top"
+		initialFocus="agree">
+		<CheckBox id="_IDGenCheckBoxAgree1" text="I agree to save the self appraisal for the approval" selected="true" />
+		<footer>
+			<OverflowToolbar>
+				<ToolbarSpacer/>
+				<Button
+					id="cancel"
+					text="Cancel"
+					press="handleCancelAppraisalPress" />
+				<Button
+					id="agree"
+					text="Save Appraisal"
+					press="handleSaveAppraisalPress" />
+				
+			</OverflowToolbar>
+		</footer>
+	</Popover>
+</core:FragmentDefinition>

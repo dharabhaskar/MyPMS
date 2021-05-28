@@ -2,7 +2,9 @@ sap.ui.define([
 	"com/infocus/MyPMS/controller/BaseController",
 	"sap/m/MessageBox",
 	"sap/ui/model/json/JSONModel",
-], function(Controller, MessageBox, JSONModel) {
+	"sap/ui/core/Fragment",
+    "sap/m/MessageToast",
+], function(Controller, MessageBox, JSONModel,Fragment,MessageToast) {
 	"use strict";
 
 	return Controller.extend("com.infocus.MyPMS.controller.MainView", {
@@ -63,11 +65,46 @@ sap.ui.define([
 
 					_self.getView().setModel(new JSONModel(_self.empDetails), "emp");
 
+					_self.byId("emp_selfappr_page").scrollTo(0);
+
 				},
 				error: function() {
 					console.log('Data fetch error');
 				}
 			});
-		}
+		},
+		handleIAgreePopoverPress: function(oEvent) {
+			console.log(oEvent);
+			var oButton = oEvent.getSource(),
+				oView = this.getView();
+
+			console.log(oView);
+
+			// create popover
+			if (!this._pPopover) {
+				this._pPopover = Fragment.load({
+					id: oView.getId(),
+					name: "com.infocus.MyPMS.view.AgreePopover",
+					controller: this,
+				}).then(function(oPopover) {
+					oView.addDependent(oPopover);
+					//oPopover.bindElement("/ProductCollection/0");
+					return oPopover;
+				});
+			}
+			this._pPopover.then(function(oPopover) {
+				oPopover.openBy(oButton);
+			});
+		},
+		        handleSaveAppraisalPress: function () {
+          this.byId("myPopover").close();
+          MessageToast.show("Your appraisal saved successfully.");
+        },
+        handleCancelAppraisalPress: function () {
+          this.byId("myPopover").close();
+        },
+        handleSaveAsDraft:function(){
+        	MessageToast.show("Your appraisal saved as draft successfully...");
+        }
 	});
 });

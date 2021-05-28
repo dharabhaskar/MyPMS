@@ -2,7 +2,7 @@
 	xmlns:layout="sap.ui.layout" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form" xmlns:m="sap.m" xmlns:table="sap.ui.table"
 	xmlns:fx="sap.f" xmlns:l="sap.ui.layout" height="100%">
 	<m:App id="rootControl">
-		<m:Page id="emp_selfappr_page" showHeader="false" title="Self Appraisal">
+		<m:Page id="emp_selfappr_page" showHeader="false" title="Self Appraisal" enableScrolling="true">
 			<m:content>
 				<m:VBox class="sapUiSmallMargin">
 					<m:ObjectHeader id="objHeader" icon="{/Employee/img}" iconDensityAware="false" iconAlt="Denise Smith" imageShape="Circle" responsive="true"
@@ -92,7 +92,7 @@
 			<m:footer>
 				<m:OverflowToolbar id="otbFooter">
 					<m:ToolbarSpacer/>
-					<m:Button type="Emphasized" text="Save As Draft"/>
+					<m:Button type="Emphasized" text="Save As Draft" press="handleSaveAsDraft"/>
 					<m:Button type="Emphasized" text="Save" press="handleIAgreePopoverPress"/>
 				</m:OverflowToolbar>
 			</m:footer>
