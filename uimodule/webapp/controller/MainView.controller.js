@@ -48,6 +48,19 @@ sap.ui.define([
 					srvYear = srvYear > 0 ? (srvYear + " Year" + (srvYear > 1 ? "s" : "")) : "";
 					_self.empDetails.ServiceInDepartment = srvYear + " " + srvMonth + " " + srvDay;
 
+					//Basic Pay format
+					/*var oFormat = NumberFormat.getCurrencyInstance({
+						"currencyCode": false,
+						"customCurrencies": {
+							"RS": {
+								"symbol": "\u0243",
+								"decimals": 2
+							}
+						}
+					});
+
+					_self.empDetails.ExCurrBasic=oFormat.format(_self.empDetails.ExCurrBasic, "RS"); // "Ƀ 123.457"*/
+
 					_self.getView().setModel(new JSONModel(_self.empDetails), "emp");
 
 				},
