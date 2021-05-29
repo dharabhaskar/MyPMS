@@ -137,22 +137,6 @@ sap.ui.define([
 		},
 		createData: function() {
 			var data = this.getView().getModel("appraisalData").oData;
-			/*var data = {
-				Empid: "40000079",
-				Period: "01",
-				MajorTask1: "work",
-				MajorTask2: "I LIVE IN BARRACKPORE",
-				MajorTask3: "I AM AN SAP S/4 HANA TECHNICAL CONSULTANT",
-				AppraiserId: "00000000",
-				ApprComm1: "",
-				ApprComm2: "",
-				ApprComm3: "",
-				ConstrainFaced: "MY ADDRESS : 16,SASTITALA ROAD,P.O=TALPUKUR,BARRACKPORE",
-				Failure1: "failure",
-				Failure2: "+917003643906",
-				Failure3: "MY CURRENT ORGANIZATION IS INFOCUS TECHNOLOGIES.",
-				TrainingDevNeed: "STAY HOME STAY SAFE."
-			};*/
 			sap.ui.core.BusyIndicator.show();
 			
 			console.log("Saving data....");

@@ -76,7 +76,17 @@
 										<f:ColumnElementData cellsSmall="12" cellsLarge="12"/>
 									</m:layoutData>
 								</m:Label>
-								<m:TextArea rows="4" maxLength="150">
+								<m:TextArea rows="2" maxLength="150" id="failure1" value="{appraisalData>/Failure1}">
+									<m:layoutData>
+										<f:ColumnElementData cellsSmall="12" cellsLarge="12"/>
+									</m:layoutData>
+								</m:TextArea>
+								<m:TextArea rows="2" maxLength="150" id="failure2" value="{appraisalData>/Failure2}">
+									<m:layoutData>
+										<f:ColumnElementData cellsSmall="12" cellsLarge="12"/>
+									</m:layoutData>
+								</m:TextArea>
+								<m:TextArea rows="2" maxLength="150" id="failure3" value="{appraisalData>/Failure3}">
 									<m:layoutData>
 										<f:ColumnElementData cellsSmall="12" cellsLarge="12"/>
 									</m:layoutData>
