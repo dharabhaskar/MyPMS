@@ -17,11 +17,8 @@
 						<m:ObjectAttribute title="Period of Review" text="{emp>/ExPeriod}"/>
 						<m:ObjectAttribute title="Division" text="{emp>/ExDivision}"/>
 						<m:ObjectAttribute title="Location" text="{emp>/ExLocation}"/>
-						
 						<m:ObjectAttribute title="Head of Department" text="{emp>/ExHodName}"/>
 						<m:ObjectAttribute title="Head of Location" text="{emp>/ExHolName}"/>
-						
-						
 					</m:ObjectHeader>
 					<m:Panel headerText="Self Appraisal">
 						<f:SimpleForm editable="true" layout="ColumnLayout" columnsM="1" columnsL="1" columnsXL="1">
@@ -31,7 +28,7 @@
 										<f:ColumnElementData cellsSmall="12" cellsLarge="12"/>
 									</m:layoutData>
 								</m:Label>
-								<m:TextArea rows="2">
+								<m:TextArea rows="2" maxLength="150" id="achievement1" value="{appraisalData>/MajorTask1}">
 									<m:layoutData>
 										<f:ColumnElementData cellsSmall="12" cellsLarge="12"/>
 									</m:layoutData>
@@ -41,7 +38,7 @@
 										<f:ColumnElementData cellsSmall="12" cellsLarge="12"/>
 									</m:layoutData>
 								</m:Label>
-								<m:TextArea rows="2">
+								<m:TextArea rows="2" maxLength="150" id="achievement2" value="{appraisalData>/MajorTask2}">
 									<m:layoutData>
 										<f:ColumnElementData cellsSmall="12" cellsLarge="12"/>
 									</m:layoutData>
@@ -51,9 +48,23 @@
 										<f:ColumnElementData cellsSmall="12" cellsLarge="12"/>
 									</m:layoutData>
 								</m:Label>
-								<m:TextArea rows="2">
+								<m:TextArea rows="2" maxLength="150" id="achievement3" value="{appraisalData>/MajorTask3}">
 									<m:layoutData>
 										<f:ColumnElementData cellsSmall="12" cellsLarge="12"/>
+									</m:layoutData>
+								</m:TextArea>
+							</f:content>
+						</f:SimpleForm>
+						<f:SimpleForm editable="true" layout="ColumnLayout" columnsM="1" columnsL="1" columnsXL="1">
+							<f:content>
+								<m:Label text="Constraints Faced">
+									<m:layoutData>
+										<f:ColumnElementData cellsSmall="12" cellsLarge="12"/>
+									</m:layoutData>
+								</m:Label>
+								<m:TextArea rows="4" maxLength="150" value="{appraisalData>/ConstrainFaced}">
+									<m:layoutData>
+										<f:ColumnElementData cellsSmall="12" cellsLarge="12" />
 									</m:layoutData>
 								</m:TextArea>
 							</f:content>
@@ -65,7 +76,7 @@
 										<f:ColumnElementData cellsSmall="12" cellsLarge="12"/>
 									</m:layoutData>
 								</m:Label>
-								<m:TextArea rows="4">
+								<m:TextArea rows="4" maxLength="150">
 									<m:layoutData>
 										<f:ColumnElementData cellsSmall="12" cellsLarge="12"/>
 									</m:layoutData>
@@ -79,7 +90,7 @@
 										<f:ColumnElementData cellsSmall="12" cellsLarge="12"/>
 									</m:layoutData>
 								</m:Label>
-								<m:TextArea rows="4">
+								<m:TextArea rows="4" maxLength="150" value="{appraisalData>/TrainingDevNeed}">
 									<m:layoutData>
 										<f:ColumnElementData cellsSmall="12" cellsLarge="12"/>
 									</m:layoutData>

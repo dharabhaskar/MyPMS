@@ -3,8 +3,8 @@ sap.ui.define([
 	"sap/m/MessageBox",
 	"sap/ui/model/json/JSONModel",
 	"sap/ui/core/Fragment",
-    "sap/m/MessageToast",
-], function(Controller, MessageBox, JSONModel,Fragment,MessageToast) {
+	"sap/m/MessageToast",
+], function(Controller, MessageBox, JSONModel, Fragment, MessageToast) {
 	"use strict";
 
 	return Controller.extend("com.infocus.MyPMS.controller.MainView", {
@@ -17,12 +17,13 @@ sap.ui.define([
 			sap.ui.core.BusyIndicator.show();
 
 			//Fetch Employee data from service...
+			sap.ui.core.BusyIndicator.show();
 			var employmentSetURL = "/ConcurrentEmploymentSet?$expand=ToItems";
 			_model.read(employmentSetURL, {
 				success: function(response) {
-					sap.ui.core.BusyIndicator.hide();
+					//sap.ui.core.BusyIndicator.hide();
 					console.log(response);
-					var empId = response.results[0].Pernr;
+					_self.empId = response.results[0].Pernr;
 
 					_self.empDetails = response.results[0];
 
@@ -66,6 +67,9 @@ sap.ui.define([
 					_self.getView().setModel(new JSONModel(_self.empDetails), "emp");
 
 					_self.byId("emp_selfappr_page").scrollTo(0);
+					
+					//Fetching appraisal data from server.
+					_self.fetchAppraisalDataFromService();
 
 				},
 				error: function() {
@@ -96,15 +100,76 @@ sap.ui.define([
 				oPopover.openBy(oButton);
 			});
 		},
-		        handleSaveAppraisalPress: function () {
-          this.byId("myPopover").close();
-          MessageToast.show("Your appraisal saved successfully.");
-        },
-        handleCancelAppraisalPress: function () {
-          this.byId("myPopover").close();
-        },
-        handleSaveAsDraft:function(){
-        	MessageToast.show("Your appraisal saved as draft successfully...");
-        }
+		handleSaveAppraisalPress: function() {
+			this.byId("myPopover").close();
+			//Calling the save data function.
+			this.createData();
+		},
+		handleCancelAppraisalPress: function() {
+			this.byId("myPopover").close();
+
+		},
+		handleSaveAsDraft: function() {
+			MessageToast.show("You clicked on save as draft. (No service attached!!!)")
+		},
+		handleMaxCharValidation: function(oControlEvent) {
+			console.log(oControlEvent);
+			if (!oControlEvent.getParameters.value) {
+				oControlEvent.getSource().setValueState(sap.ui.core.ValueState.Error);
+			}
+		},
+		fetchAppraisalDataFromService: function() {
+			var _self=this;
+			sap.ui.core.BusyIndicator.show();
+			var appraisalGetURL = "/empappraiseSet('" + _self.empId + "')";
+			_self.getView().getModel().read(appraisalGetURL, {
+				success: function(response) {
+					sap.ui.core.BusyIndicator.hide();
+					console.log(response);
+					_self.appraisalData=response;
+					_self.getView().setModel(new JSONModel(_self.appraisalData), "appraisalData");    
+				},
+				error: function(error) {
+					sap.ui.core.BusyIndicator.hide();
+					console.log(error);
+				}
+			});
+		},
+		createData: function() {
+			var data = this.getView().getModel("appraisalData").oData;
+			/*var data = {
+				Empid: "40000079",
+				Period: "01",
+				MajorTask1: "work",
+				MajorTask2: "I LIVE IN BARRACKPORE",
+				MajorTask3: "I AM AN SAP S/4 HANA TECHNICAL CONSULTANT",
+				AppraiserId: "00000000",
+				ApprComm1: "",
+				ApprComm2: "",
+				ApprComm3: "",
+				ConstrainFaced: "MY ADDRESS : 16,SASTITALA ROAD,P.O=TALPUKUR,BARRACKPORE",
+				Failure1: "failure",
+				Failure2: "+917003643906",
+				Failure3: "MY CURRENT ORGANIZATION IS INFOCUS TECHNOLOGIES.",
+				TrainingDevNeed: "STAY HOME STAY SAFE."
+			};*/
+			sap.ui.core.BusyIndicator.show();
+			
+			console.log("Saving data....");
+			console.log(data);
+			var odataModel = this.getView().getModel();
+			odataModel.create("/empappraiseSet", data, {
+				success: function(data, response) {
+					sap.ui.core.BusyIndicator.hide();
+					MessageBox.show("Your appraisal saved successfully...");
+					console.log(response);
+				},
+				error: function(error) {
+					sap.ui.core.BusyIndicator.hide();
+					MessageBox.error("Error while creating the data");
+					console.log(error);
+				}
+			});
+		},
 	});
 });
