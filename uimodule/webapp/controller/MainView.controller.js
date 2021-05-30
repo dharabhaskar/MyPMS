@@ -101,7 +101,7 @@ sap.ui.define([
 			});
 		},
 		handleSaveAppraisalPress: function() {
-			this.byId("myPopover").close();
+			//this.byId("myPopover").close();
 			//Calling the save data function.
 			this.createData();
 		},

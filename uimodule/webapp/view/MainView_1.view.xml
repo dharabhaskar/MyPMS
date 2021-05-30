@@ -21,79 +21,88 @@
 						<m:ObjectAttribute title="Head of Location" text="{emp>/ExHolName}"/>
 					</m:ObjectHeader>
 					<m:Panel headerText="Self Appraisal">
-						<f:SimpleForm editable="true" layout="ResponsiveGridLayout" labelSpanL="4" labelSpanM="12" adjustLabelSpan="false" emptySpanL="0"
-							emptySpanM="0" columnsL="2" columnsM="2">
+						<f:SimpleForm editable="true" layout="ColumnLayout" columnsM="1" columnsL="1" columnsXL="1">
 							<f:content>
-								<m:Label text="Major tasks achived (Not more than three)">
+								<m:Label text="Achivement 1">
 									<m:layoutData>
-										<!--<f:ColumnElementData cellsSmall="12" cellsLarge="12"/>-->
-										<layout:GridData span="L12 M12 S12"/>
+										<f:ColumnElementData cellsSmall="12" cellsLarge="12"/>
 									</m:layoutData>
 								</m:Label>
 								<m:TextArea rows="2" maxLength="150" id="achievement1" value="{appraisalData>/MajorTask1}">
 									<m:layoutData>
-										<layout:GridData span="L12 M12 S12"/>
+										<f:ColumnElementData cellsSmall="12" cellsLarge="12"/>
 									</m:layoutData>
 								</m:TextArea>
-								
-								<m:TextArea rows="2" maxLength="150" id="achievement2" value="{appraisalData>/MajorTask2}">
+								<m:Label text="Achivement 2">
 									<m:layoutData>
-										<layout:GridData span="L12 M12 S12"/>
-									</m:layoutData>
-								</m:TextArea>
-							
-								<m:TextArea rows="2" maxLength="150" id="achievement3" value="{appraisalData>/MajorTask3}">
-									<m:layoutData>
-										<layout:GridData span="L12 M12 S12"/>
-									</m:layoutData>
-								</m:TextArea>
-							</f:content>
-					
-							<f:content>
-								<m:Label text="Constraints Faced">
-									<m:layoutData>
-										<layout:GridData span="L12 M12 S12"/>
+										<f:ColumnElementData cellsSmall="12" cellsLarge="12"/>
 									</m:layoutData>
 								</m:Label>
-								<m:TextArea rows="4" maxLength="150" value="{appraisalData>/ConstrainFaced}">
+								<m:TextArea rows="2" maxLength="150" id="achievement2" value="{appraisalData>/MajorTask2}">
+									<m:layoutData>
+										<f:ColumnElementData cellsSmall="12" cellsLarge="12"/>
+									</m:layoutData>
+								</m:TextArea>
+								<m:Label text="Achivement 3">
+									<m:layoutData>
+										<f:ColumnElementData cellsSmall="12" cellsLarge="12"/>
+									</m:layoutData>
+								</m:Label>
+								<m:TextArea rows="2" maxLength="150" id="achievement3" value="{appraisalData>/MajorTask3}">
 									<m:layoutData>
 										<f:ColumnElementData cellsSmall="12" cellsLarge="12"/>
 									</m:layoutData>
 								</m:TextArea>
 							</f:content>
-						
+						</f:SimpleForm>
+						<f:SimpleForm editable="true" layout="ColumnLayout" columnsM="1" columnsL="1" columnsXL="1">
+							<f:content>
+								<m:Label text="Constraints Faced">
+									<m:layoutData>
+										<f:ColumnElementData cellsSmall="12" cellsLarge="12"/>
+									</m:layoutData>
+								</m:Label>
+								<m:TextArea rows="4" maxLength="150" value="{appraisalData>/ConstrainFaced}">
+									<m:layoutData>
+										<f:ColumnElementData cellsSmall="12" cellsLarge="12" />
+									</m:layoutData>
+								</m:TextArea>
+							</f:content>
+						</f:SimpleForm>
+						<f:SimpleForm editable="true" layout="ColumnLayout" columnsM="1" columnsL="1" columnsXL="1">
 							<f:content>
 								<m:Label text="Major Failures (Not less than two)">
 									<m:layoutData>
-										<layout:GridData span="L12 M12 S12"/>
+										<f:ColumnElementData cellsSmall="12" cellsLarge="12"/>
 									</m:layoutData>
 								</m:Label>
 								<m:TextArea rows="2" maxLength="150" id="failure1" value="{appraisalData>/Failure1}">
 									<m:layoutData>
-										<layout:GridData span="L12 M12 S12"/>
+										<f:ColumnElementData cellsSmall="12" cellsLarge="12"/>
 									</m:layoutData>
 								</m:TextArea>
 								<m:TextArea rows="2" maxLength="150" id="failure2" value="{appraisalData>/Failure2}">
 									<m:layoutData>
-										<layout:GridData span="L12 M12 S12"/>
+										<f:ColumnElementData cellsSmall="12" cellsLarge="12"/>
 									</m:layoutData>
 								</m:TextArea>
 								<m:TextArea rows="2" maxLength="150" id="failure3" value="{appraisalData>/Failure3}">
 									<m:layoutData>
-										<layout:GridData span="L12 M12 S12"/>
+										<f:ColumnElementData cellsSmall="12" cellsLarge="12"/>
 									</m:layoutData>
 								</m:TextArea>
 							</f:content>
-					
+						</f:SimpleForm>
+						<f:SimpleForm editable="true" layout="ColumnLayout" columnsM="1" columnsL="1" columnsXL="1">
 							<f:content>
 								<m:Label text="Training &amp; Development needs required \n for being more effective">
 									<m:layoutData>
-										<layout:GridData span="L12 M12 S12"/>
+										<f:ColumnElementData cellsSmall="12" cellsLarge="12"/>
 									</m:layoutData>
 								</m:Label>
 								<m:TextArea rows="4" maxLength="150" value="{appraisalData>/TrainingDevNeed}">
 									<m:layoutData>
-										<layout:GridData span="L12 M12 S12"/>
+										<f:ColumnElementData cellsSmall="12" cellsLarge="12"/>
 									</m:layoutData>
 								</m:TextArea>
 							</f:content>
@@ -105,7 +114,7 @@
 				<m:OverflowToolbar id="otbFooter">
 					<m:ToolbarSpacer/>
 					<m:Button type="Emphasized" text="Save As Draft" press="handleSaveAsDraft"/>
-					<m:Button type="Emphasized" text="Save" press="handleSaveAppraisalPress"/>
+					<m:Button type="Emphasized" text="Save" press="handleIAgreePopoverPress"/>
 				</m:OverflowToolbar>
 			</m:footer>
 		</m:Page>
