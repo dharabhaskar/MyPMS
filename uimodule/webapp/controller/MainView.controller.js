@@ -149,35 +149,56 @@ sap.ui.define([
 				}
 			});
 		},
+		validateFailure: function() {
+			var data = this.getView().getModel("appraisalData").oData;
+			var isF1=data.Failure1 && data.Failure1.trim().length>0;
+			var isF2=data.Failure2 && data.Failure2.trim().length>0;
+			var isF3=data.Failure3 && data.Failure3.trim().length>0;
+	
+			if(isF1 && isF2){
+				return true;
+			}
+			if(isF1 && isF3){
+				return true;
+			}
+			if(isF2 && isF3){
+				return true;
+			}
+			return false;
+		},
 		createData: function() {
 			var data = this.getView().getModel("appraisalData").oData;
 			sap.ui.core.BusyIndicator.show();
 
-			console.log("Saving data....");
-			console.log(data);
-			var odataModel = this.getView().getModel();
-			odataModel.create("/empappraiseSet", data, {
-				success: function(data, response) {
-					sap.ui.core.BusyIndicator.hide();
-					MessageBox.show("Your appraisal saved successfully...");
-					console.log(response);
-				},
-				error: function(error) {
-					sap.ui.core.BusyIndicator.hide();
-					MessageBox.error("Error while creating the data");
-					console.log(error);
-				}
-			});
+			if (!this.validateFailure()) {
+				MessageBox.error("You must add atleast two failures.");
+			} else {
+				sap.ui.core.BusyIndicator.show();
+				var odataModel = this.getView().getModel();
+				odataModel.create("/empappraiseSet", data, {
+					success: function(data, response) {
+						sap.ui.core.BusyIndicator.hide();
+						MessageBox.show("Your appraisal saved successfully...");
+						console.log(response);
+					},
+					error: function(error) {
+						sap.ui.core.BusyIndicator.hide();
+						MessageBox.error("Error while creating the data");
+						console.log(error);
+					}
+				});
+			}
+			sap.ui.core.BusyIndicator.hide();
 		},
 		onDesignationPress: function() {
 			var _self = this;
 			var prevPositionsData = {
-				"array":[{
-					"Position": "Manager",
-					"Period": "2 year 6 Month",
-					"Location": "Mumbai"
+				array: [{
+					Position: "Manager",
+					Period: "2 year 6 Month",
+					Location: "Mumbai"
 				}]
-			}
+			};
 			_self.getView().setModel(new JSONModel(prevPositionsData), "prevPosData");
 
 			var oTable = new sap.m.Table("idPrdList", {
@@ -185,11 +206,6 @@ sap.ui.define([
 				mode: sap.m.ListMode.None,
 				includeItemInSelection: false,
 			});
-			var colItems = new sap.m.ColumnListItem("colItems", {
-				type: "Active"
-			});
-			oTable.bindAggregation("items", "prevPosData>/array", colItems);
-
 			var col1 = new sap.m.Column("col1", {
 				header: new sap.m.Label({
 					text: "Position"
@@ -205,10 +221,16 @@ sap.ui.define([
 					text: "Location"
 				})
 			});
-			var txtNAME = new sap.m.Text("txtPosition", {
-				text: "{Position}"
-			});
-			colItems.addCell(txtNAME);
+
+			oTable.bindItems("prevPosData>/array", new sap.m.ColumnListItem({
+				cells: [new sap.m.Text({
+					text: "{Position}"
+				}), new sap.m.Text({
+					text: "{Period}"
+				}), new sap.m.Text({
+					text: "{Location}",
+				}), ]
+			}));
 
 			oTable.addColumn(col1);
 			oTable.addColumn(col2);
@@ -235,6 +257,17 @@ sap.ui.define([
 			}
 
 			that.resizableDialog.open();
+
+			/*if (! this._oDialog) {
+				this._oDialog = sap.ui.xmlfragment("com.infocus.MyPMS.view.PositionsDialog", this);
+			}
+ 
+ 
+			this.getView().addDependent(this._oDialog);
+ 
+			// toggle compact style
+			jQuery.sap.syncStyleClass("sapUiSizeCompact", this.getView(), this._oDialog);
+			this._oDialog.open();*/
 		}
 	});
 });
