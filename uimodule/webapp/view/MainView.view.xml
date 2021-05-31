@@ -6,7 +6,7 @@
 			<m:content>
 				<m:VBox class="sapUiSmallMargin">
 					<m:ObjectHeader id="objHeader" icon="{/Employee/img}" iconDensityAware="false" iconAlt="Denise Smith" imageShape="Circle" responsive="true"
-						title="{emp>/ExName}" intro="{emp>/ExDesignation}" class="sapUiResponsivePadding--header">
+						title="{emp>/ExName}" intro="{emp>/ExDesignation}" introActive="true" introPress="onDesignationPress" class="sapUiResponsivePadding--header">
 						<m:ObjectAttribute title="Period of last promotion" text="{emp>/PeriodOfLastPromotion}"/>
 						<m:ObjectAttribute title="Year of last promotion" text="{emp>/ExPromYear}"/>
 						<m:ObjectAttribute title="Date of Birth" text="{emp>/ExDOBText}"/>
@@ -24,9 +24,8 @@
 						<f:SimpleForm editable="true" layout="ResponsiveGridLayout" labelSpanL="4" labelSpanM="12" adjustLabelSpan="false" emptySpanL="0"
 							emptySpanM="0" columnsL="2" columnsM="2">
 							<f:content>
-								<m:Label text="Major tasks achived (Not more than three)">
+								<m:Label text="Major tasks achived (Not more than three) {i18n>notMoreThan150}">
 									<m:layoutData>
-										<!--<f:ColumnElementData cellsSmall="12" cellsLarge="12"/>-->
 										<layout:GridData span="L12 M12 S12"/>
 									</m:layoutData>
 								</m:Label>
@@ -50,20 +49,20 @@
 							</f:content>
 					
 							<f:content>
-								<m:Label text="Constraints Faced">
+								<m:Label text="Constraints Faced {i18n>notMoreThan150}">
 									<m:layoutData>
 										<layout:GridData span="L12 M12 S12"/>
 									</m:layoutData>
 								</m:Label>
 								<m:TextArea rows="4" maxLength="150" value="{appraisalData>/ConstrainFaced}">
 									<m:layoutData>
-										<f:ColumnElementData cellsSmall="12" cellsLarge="12"/>
+										<layout:GridData span="L12 M12 S12"/>
 									</m:layoutData>
 								</m:TextArea>
 							</f:content>
 						
 							<f:content>
-								<m:Label text="Major Failures (Not less than two)">
+								<m:Label text="Major Failures (Not less than two) {i18n>notMoreThan150}">
 									<m:layoutData>
 										<layout:GridData span="L12 M12 S12"/>
 									</m:layoutData>
@@ -86,7 +85,7 @@
 							</f:content>
 					
 							<f:content>
-								<m:Label text="Training &amp; Development needs required \n for being more effective">
+								<m:Label text="Training &amp; Development needs required for being more effective {i18n>notMoreThan150}">
 									<m:layoutData>
 										<layout:GridData span="L12 M12 S12"/>
 									</m:layoutData>

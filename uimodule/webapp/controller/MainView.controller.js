@@ -4,7 +4,11 @@ sap.ui.define([
 	"sap/ui/model/json/JSONModel",
 	"sap/ui/core/Fragment",
 	"sap/m/MessageToast",
-], function(Controller, MessageBox, JSONModel, Fragment, MessageToast) {
+	'sap/m/Button',
+	'sap/m/Dialog',
+	'sap/m/List',
+	'sap/m/StandardListItem',
+], function(Controller, MessageBox, JSONModel, Fragment, MessageToast, Button, Dialog, List, StandardListItem) {
 	"use strict";
 
 	return Controller.extend("com.infocus.MyPMS.controller.MainView", {
@@ -51,6 +55,9 @@ sap.ui.define([
 					srvYear = srvYear > 0 ? (srvYear + " Year" + (srvYear > 1 ? "s" : "")) : "";
 					_self.empDetails.ServiceInDepartment = srvYear + " " + srvMonth + " " + srvDay;
 
+					var basicPay = parseFloat(_self.empDetails.ExCurrBasic).toFixed(2);
+					_self.empDetails.ExCurrBasic = basicPay;
+
 					//Basic Pay format
 					/*var oFormat = NumberFormat.getCurrencyInstance({
 						"currencyCode": false,
@@ -67,7 +74,7 @@ sap.ui.define([
 					_self.getView().setModel(new JSONModel(_self.empDetails), "emp");
 
 					_self.byId("emp_selfappr_page").scrollTo(0);
-					
+
 					//Fetching appraisal data from server.
 					_self.fetchAppraisalDataFromService();
 
@@ -119,15 +126,22 @@ sap.ui.define([
 			}
 		},
 		fetchAppraisalDataFromService: function() {
-			var _self=this;
+			var _self = this;
 			sap.ui.core.BusyIndicator.show();
 			var appraisalGetURL = "/empappraiseSet('" + _self.empId + "')";
 			_self.getView().getModel().read(appraisalGetURL, {
 				success: function(response) {
 					sap.ui.core.BusyIndicator.hide();
 					console.log(response);
-					_self.appraisalData=response;
-					_self.getView().setModel(new JSONModel(_self.appraisalData), "appraisalData");    
+					if (response.statusCode && response.statusCode === "404") {
+						//When a user has no data.
+						_self.appraisalData = {
+
+						}
+					} else {
+						_self.appraisalData = response;
+						_self.getView().setModel(new JSONModel(_self.appraisalData), "appraisalData");
+					}
 				},
 				error: function(error) {
 					sap.ui.core.BusyIndicator.hide();
@@ -138,7 +152,7 @@ sap.ui.define([
 		createData: function() {
 			var data = this.getView().getModel("appraisalData").oData;
 			sap.ui.core.BusyIndicator.show();
-			
+
 			console.log("Saving data....");
 			console.log(data);
 			var odataModel = this.getView().getModel();
@@ -155,5 +169,72 @@ sap.ui.define([
 				}
 			});
 		},
+		onDesignationPress: function() {
+			var _self = this;
+			var prevPositionsData = {
+				"array":[{
+					"Position": "Manager",
+					"Period": "2 year 6 Month",
+					"Location": "Mumbai"
+				}]
+			}
+			_self.getView().setModel(new JSONModel(prevPositionsData), "prevPosData");
+
+			var oTable = new sap.m.Table("idPrdList", {
+				inset: true,
+				mode: sap.m.ListMode.None,
+				includeItemInSelection: false,
+			});
+			var colItems = new sap.m.ColumnListItem("colItems", {
+				type: "Active"
+			});
+			oTable.bindAggregation("items", "prevPosData>/array", colItems);
+
+			var col1 = new sap.m.Column("col1", {
+				header: new sap.m.Label({
+					text: "Position"
+				})
+			});
+			var col2 = new sap.m.Column("col2", {
+				header: new sap.m.Label({
+					text: "Period"
+				})
+			});
+			var col3 = new sap.m.Column("col3", {
+				header: new sap.m.Label({
+					text: "Location"
+				})
+			});
+			var txtNAME = new sap.m.Text("txtPosition", {
+				text: "{Position}"
+			});
+			colItems.addCell(txtNAME);
+
+			oTable.addColumn(col1);
+			oTable.addColumn(col2);
+			oTable.addColumn(col3);
+
+			var that = this;
+			if (!that.resizableDialog) {
+				that.resizableDialog = new Dialog({
+					title: 'Details of last three position (Excluding Present)',
+					contentWidth: "550px",
+					contentHeight: "300px",
+					resizable: true,
+					content: oTable,
+					beginButton: new Button({
+						text: 'Close',
+						press: function() {
+							that.resizableDialog.close();
+						}
+					})
+				});
+
+				//to get access to the global model
+				this.getView().addDependent(that.resizableDialog);
+			}
+
+			that.resizableDialog.open();
+		}
 	});
 });
