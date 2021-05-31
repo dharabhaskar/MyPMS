@@ -22,8 +22,11 @@ sap.ui.define([
 
 			//Fetch Employee data from service...
 			sap.ui.core.BusyIndicator.show();
-			var employmentSetURL = "/ConcurrentEmploymentSet?$expand=ToItems";
+			var employmentSetURL = "/ConcurrentEmploymentSet";
 			_model.read(employmentSetURL, {
+				urlParameters: {
+					"$expand": "ToItems"
+				},
 				success: function(response) {
 					//sap.ui.core.BusyIndicator.hide();
 					console.log(response);
@@ -133,35 +136,47 @@ sap.ui.define([
 				success: function(response) {
 					sap.ui.core.BusyIndicator.hide();
 					console.log(response);
-					if (response.statusCode && response.statusCode === "404") {
-						//When a user has no data.
-						_self.appraisalData = {
 
-						}
-					} else {
-						_self.appraisalData = response;
-						_self.getView().setModel(new JSONModel(_self.appraisalData), "appraisalData");
-					}
+					_self.appraisalData = response;
+					_self.getView().setModel(new JSONModel(_self.appraisalData), "appraisalData");
 				},
 				error: function(error) {
 					sap.ui.core.BusyIndicator.hide();
 					console.log(error);
+						_self.appraisalData = {
+							Empid: _self.empId,
+							ApprComm1: "",
+							ApprComm2: "",
+							ApprComm3: "",
+							AppraiserId: "",
+							ConstrainFaced: "",
+							Empid: "",
+							Failure1: "",
+							Failure2: "",
+							Failure3: "",
+							MajorTask1: "",
+							MajorTask2: "",
+							MajorTask3: "",
+							Period: "01",
+							Saveflag: "",
+						};
+						_self.getView().setModel(new JSONModel(_self.appraisalData), "appraisalData");
 				}
 			});
 		},
 		validateFailure: function() {
 			var data = this.getView().getModel("appraisalData").oData;
-			var isF1=data.Failure1 && data.Failure1.trim().length>0;
-			var isF2=data.Failure2 && data.Failure2.trim().length>0;
-			var isF3=data.Failure3 && data.Failure3.trim().length>0;
-	
-			if(isF1 && isF2){
+			var isF1 = data.Failure1 && data.Failure1.trim().length > 0;
+			var isF2 = data.Failure2 && data.Failure2.trim().length > 0;
+			var isF3 = data.Failure3 && data.Failure3.trim().length > 0;
+
+			if (isF1 && isF2) {
 				return true;
 			}
-			if(isF1 && isF3){
+			if (isF1 && isF3) {
 				return true;
 			}
-			if(isF2 && isF3){
+			if (isF2 && isF3) {
 				return true;
 			}
 			return false;
@@ -169,16 +184,21 @@ sap.ui.define([
 		createData: function() {
 			var data = this.getView().getModel("appraisalData").oData;
 			sap.ui.core.BusyIndicator.show();
+			
+			data.Empid=this.empId;
 
 			if (!this.validateFailure()) {
 				MessageBox.error("You must add atleast two failures.");
+				sap.ui.core.BusyIndicator.hide();
 			} else {
 				sap.ui.core.BusyIndicator.show();
 				var odataModel = this.getView().getModel();
+				console.log("Saving data...");
+				console.log(data);
 				odataModel.create("/empappraiseSet", data, {
 					success: function(data, response) {
 						sap.ui.core.BusyIndicator.hide();
-						MessageBox.show("Your appraisal saved successfully...");
+						MessageBox.success("Your appraisal saved successfully...");
 						console.log(response);
 					},
 					error: function(error) {
@@ -188,18 +208,18 @@ sap.ui.define([
 					}
 				});
 			}
-			sap.ui.core.BusyIndicator.hide();
+
 		},
 		onDesignationPress: function() {
 			var _self = this;
-			var prevPositionsData = {
+			/*var prevPositionsData = {
 				array: [{
 					Position: "Manager",
 					Period: "2 year 6 Month",
 					Location: "Mumbai"
 				}]
 			};
-			_self.getView().setModel(new JSONModel(prevPositionsData), "prevPosData");
+			_self.getView().setModel(new JSONModel(prevPositionsData), "prevPosData");*/
 
 			var oTable = new sap.m.Table("idPrdList", {
 				inset: true,
@@ -222,7 +242,7 @@ sap.ui.define([
 				})
 			});
 
-			oTable.bindItems("prevPosData>/array", new sap.m.ColumnListItem({
+			oTable.bindItems("", new sap.m.ColumnListItem({
 				cells: [new sap.m.Text({
 					text: "{Position}"
 				}), new sap.m.Text({
