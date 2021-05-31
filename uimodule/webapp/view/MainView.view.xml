@@ -5,8 +5,8 @@
 		<m:Page id="emp_selfappr_page" showHeader="false" title="Self Appraisal" enableScrolling="true">
 			<m:content>
 				<m:VBox class="sapUiSmallMargin">
-					<m:ObjectHeader id="objHeader" icon="{/Employee/img}" iconDensityAware="false" iconAlt="Denise Smith" imageShape="Circle" responsive="true"
-						title="{emp>/ExName}" intro="{emp>/ExDesignation}" introActive="true" introPress="onDesignationPress" class="sapUiResponsivePadding--header">
+					<m:ObjectHeader id="objHeader" icon="" iconDensityAware="false" iconAlt="Denise Smith" imageShape="Circle" responsive="true"
+						title="{emp>/ExName}" showTitleSelector="true" titleSelectorPress="onDesignationPress" intro="{emp>/ExDesignation}" class="sapUiResponsivePadding--header">
 						<m:ObjectAttribute title="Period of last promotion" text="{emp>/PeriodOfLastPromotion}"/>
 						<m:ObjectAttribute title="Year of last promotion" text="{emp>/ExPromYear}"/>
 						<m:ObjectAttribute title="Date of Birth" text="{emp>/ExDOBText}"/>
@@ -34,20 +34,17 @@
 										<layout:GridData span="L12 M12 S12"/>
 									</m:layoutData>
 								</m:TextArea>
-								
 								<m:TextArea rows="2" maxLength="150" id="achievement2" value="{appraisalData>/MajorTask2}">
 									<m:layoutData>
 										<layout:GridData span="L12 M12 S12"/>
 									</m:layoutData>
 								</m:TextArea>
-							
 								<m:TextArea rows="2" maxLength="150" id="achievement3" value="{appraisalData>/MajorTask3}">
 									<m:layoutData>
 										<layout:GridData span="L12 M12 S12"/>
 									</m:layoutData>
 								</m:TextArea>
 							</f:content>
-					
 							<f:content>
 								<m:Label text="Constraints Faced {i18n>notMoreThan150}">
 									<m:layoutData>
@@ -60,7 +57,6 @@
 									</m:layoutData>
 								</m:TextArea>
 							</f:content>
-						
 							<f:content>
 								<m:Label text="Major Failures (Not less than two) {i18n>notMoreThan150}">
 									<m:layoutData>
@@ -83,7 +79,6 @@
 									</m:layoutData>
 								</m:TextArea>
 							</f:content>
-					
 							<f:content>
 								<m:Label text="Training &amp; Development needs required for being more effective {i18n>notMoreThan150}">
 									<m:layoutData>

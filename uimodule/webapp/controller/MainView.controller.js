@@ -34,6 +34,22 @@ sap.ui.define([
 
 					_self.empDetails = response.results[0];
 
+					console.log("Previous positions")
+					console.log(_self.empDetails.ToItems.results)
+					
+					for(let item in _self.empDetails.ToItems.results){
+						var pDay=parseInt(_self.empDetails.ToItems.results[item].PeriodDay);
+						pDay = pDay > 0 ? (pDay + " Day" + (pDay > 1 ? "s" : "")) : "";
+						var pMonth=parseFloat(_self.empDetails.ToItems.results[item].PeriodMonth,0);
+						pMonth = pMonth > 0 ? (pMonth + " Month" + (pMonth > 1 ? "s" : "")) : "";
+						var pYear=parseFloat(_self.empDetails.ToItems.results[item].PeriodYear,0);
+						pYear = pYear > 0 ? (pYear + " Year" + (pYear > 1 ? "s" : "")) : "";
+						
+						_self.empDetails.ToItems.results[item].Period=pYear+" "+pMonth+" "+pDay;
+					}
+
+					_self.getView().setModel(new JSONModel(_self.empDetails.ToItems), "positions");
+
 					//DOB as Text
 					var oDateFormat = sap.ui.core.format.DateFormat.getDateTimeInstance({
 						pattern: "dd-MM-yyyy"
@@ -143,24 +159,24 @@ sap.ui.define([
 				error: function(error) {
 					sap.ui.core.BusyIndicator.hide();
 					console.log(error);
-						_self.appraisalData = {
-							Empid: _self.empId,
-							ApprComm1: "",
-							ApprComm2: "",
-							ApprComm3: "",
-							AppraiserId: "",
-							ConstrainFaced: "",
-							Empid: "",
-							Failure1: "",
-							Failure2: "",
-							Failure3: "",
-							MajorTask1: "",
-							MajorTask2: "",
-							MajorTask3: "",
-							Period: "01",
-							Saveflag: "",
-						};
-						_self.getView().setModel(new JSONModel(_self.appraisalData), "appraisalData");
+					_self.appraisalData = {
+						Empid: _self.empId,
+						ApprComm1: "",
+						ApprComm2: "",
+						ApprComm3: "",
+						AppraiserId: "",
+						ConstrainFaced: "",
+						Empid: "",
+						Failure1: "",
+						Failure2: "",
+						Failure3: "",
+						MajorTask1: "",
+						MajorTask2: "",
+						MajorTask3: "",
+						Period: "01",
+						Saveflag: "",
+					};
+					_self.getView().setModel(new JSONModel(_self.appraisalData), "appraisalData");
 				}
 			});
 		},
@@ -184,8 +200,8 @@ sap.ui.define([
 		createData: function() {
 			var data = this.getView().getModel("appraisalData").oData;
 			sap.ui.core.BusyIndicator.show();
-			
-			data.Empid=this.empId;
+
+			data.Empid = this.empId;
 
 			if (!this.validateFailure()) {
 				MessageBox.error("You must add atleast two failures.");
@@ -211,57 +227,48 @@ sap.ui.define([
 
 		},
 		onDesignationPress: function() {
-			var _self = this;
-			/*var prevPositionsData = {
-				array: [{
-					Position: "Manager",
-					Period: "2 year 6 Month",
-					Location: "Mumbai"
-				}]
-			};
-			_self.getView().setModel(new JSONModel(prevPositionsData), "prevPosData");*/
-
-			var oTable = new sap.m.Table("idPrdList", {
-				inset: true,
-				mode: sap.m.ListMode.None,
-				includeItemInSelection: false,
-			});
-			var col1 = new sap.m.Column("col1", {
-				header: new sap.m.Label({
-					text: "Position"
-				})
-			});
-			var col2 = new sap.m.Column("col2", {
-				header: new sap.m.Label({
-					text: "Period"
-				})
-			});
-			var col3 = new sap.m.Column("col3", {
-				header: new sap.m.Label({
-					text: "Location"
-				})
-			});
-
-			oTable.bindItems("", new sap.m.ColumnListItem({
-				cells: [new sap.m.Text({
-					text: "{Position}"
-				}), new sap.m.Text({
-					text: "{Period}"
-				}), new sap.m.Text({
-					text: "{Location}",
-				}), ]
-			}));
-
-			oTable.addColumn(col1);
-			oTable.addColumn(col2);
-			oTable.addColumn(col3);
 
 			var that = this;
 			if (!that.resizableDialog) {
+				var oTable = new sap.m.Table("tab-1", {
+					inset: true,
+					mode: sap.m.ListMode.None,
+					includeItemInSelection: false,
+				});
+				var col1 = new sap.m.Column("col1", {
+					header: new sap.m.Label({
+						text: "Position"
+					})
+				});
+				var col2 = new sap.m.Column("col2", {
+					header: new sap.m.Label({
+						text: "Period"
+					})
+				});
+				var col3 = new sap.m.Column("col3", {
+					header: new sap.m.Label({
+						text: "Location"
+					})
+				});
+
+				oTable.bindItems("positions>/results", new sap.m.ColumnListItem({
+					cells: [new sap.m.Text({
+						text: "{positions>Position}"
+					}), new sap.m.Text({
+						text: "{positions>Period}"
+					}), new sap.m.Text({
+						text: "{positions>Location}",
+					}), ]
+				}));
+
+				oTable.addColumn(col1);
+				oTable.addColumn(col2);
+				oTable.addColumn(col3);
+
 				that.resizableDialog = new Dialog({
 					title: 'Details of last three position (Excluding Present)',
-					contentWidth: "550px",
-					contentHeight: "300px",
+					contentWidth: "620px",
+					contentHeight: "200px",
 					resizable: true,
 					content: oTable,
 					beginButton: new Button({
@@ -277,17 +284,18 @@ sap.ui.define([
 			}
 
 			that.resizableDialog.open();
-
-			/*if (! this._oDialog) {
+			
+			//this._getDialog().open();
+		},
+		_getDialog: function() {
+			if (!this._oDialog) {
 				this._oDialog = sap.ui.xmlfragment("com.infocus.MyPMS.view.PositionsDialog", this);
+				this.getView().addDependent(this._oDialog);
 			}
- 
- 
-			this.getView().addDependent(this._oDialog);
- 
-			// toggle compact style
-			jQuery.sap.syncStyleClass("sapUiSizeCompact", this.getView(), this._oDialog);
-			this._oDialog.open();*/
-		}
+			return this._oDialog;
+		},
+		onCloseDialog: function() {
+			this._getDialog().close();
+		},
 	});
 });
