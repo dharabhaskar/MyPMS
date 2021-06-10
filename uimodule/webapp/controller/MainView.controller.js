@@ -152,9 +152,13 @@ sap.ui.define([
 				oPopover.openBy(oButton);
 			});
 		},
+		onAgreeSelectionChanged: function(oEvent) {
+			this.IAgreeCheckboxSelected = oEvent.getParameters().selected;
+			this.byId("agree").setEnabled(this.IAgreeCheckboxSelected);
+		},
 		handleSaveAppraisalPress: function() {
-			//this.byId("myPopover").close();
 			//Calling the save data function.
+			this.byId("myPopover").close();
 			this.createData();
 		},
 		handleCancelAppraisalPress: function() {

@@ -30,7 +30,7 @@
 				<m:OverflowToolbar id="otbFooter">
 					<m:ToolbarSpacer/>
 					<m:Button type="Emphasized" text="Save As Draft" press="handleSaveAsDraft"/>
-					<m:Button type="Emphasized" text="Save" press="handleSaveAppraisalPress"/>
+					<m:Button type="Emphasized" text="Save" press="handleIAgreePopoverPress"/>
 				</m:OverflowToolbar>
 			</m:footer>
 		</m:Page>

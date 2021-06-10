@@ -7,18 +7,18 @@
 		class="sapUiResponsivePadding--header sapUiResponsivePadding--footer"
 		placement="Top"
 		initialFocus="agree">
-		<CheckBox id="_IDGenCheckBoxAgree1" text="I agree to save the self appraisal for the approval" selected="true" />
+		<CheckBox id="_IDGenCheckBoxAgree1" select="onAgreeSelectionChanged" text="I agree to save the self appraisal for the approval" selected="false" />
 		<footer>
 			<OverflowToolbar>
 				<ToolbarSpacer/>
 				<Button
 					id="cancel"
 					text="Cancel"
-					press="handleCancelAppraisalPress" />
+					press="handleCancelAppraisalPress"/>
 				<Button
 					id="agree"
 					text="Save Appraisal"
-					press="handleSaveAppraisalPress" />
+					press="handleSaveAppraisalPress" enabled="false" />
 				
 			</OverflowToolbar>
 		</footer>

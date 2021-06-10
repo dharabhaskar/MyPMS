@@ -15,7 +15,8 @@
       "target": {
         "type": "service",
         "name": "sapui5",
-        "entryPath": "/resources"
+        "entryPath": "/resources",
+        "version": "1.52.13"
       },
       "description": "SAPUI5 Resources"
     },
@@ -24,7 +25,8 @@
       "target": {
         "type": "service",
         "name": "sapui5",
-        "entryPath": "/test-resources"
+        "entryPath": "/test-resources",
+        "version": "1.52.13"
       },
       "description": "SAPUI5 Test Resources"
     },
