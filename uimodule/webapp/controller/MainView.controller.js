@@ -12,11 +12,36 @@ sap.ui.define([
 	"use strict";
 
 	return Controller.extend("com.infocus.MyPMS.controller.MainView", {
+		_getFormFragment: function(sFragmentName) {
+			var pFormFragment = this._formFragments[sFragmentName],
+				oView = this.getView();
+
+			if (!pFormFragment) {
+				pFormFragment = Fragment.load({
+					id: oView.getId(),
+					name: "com.infocus.MyPMS.view.SelfAppraisal" + sFragmentName
+				});
+				this._formFragments[sFragmentName] = pFormFragment;
+			}
+
+			return pFormFragment;
+		},
+		_showFormFragment: function(sFragmentName) {
+			var oPage = this.byId("fragPanel");
+
+			oPage.removeAllContent();
+			this._getFormFragment(sFragmentName).then(function(oVBox) {
+				oPage.insertContent(oVBox);
+			});
+		},
 		onInit: function() {
 
 			var _self = this;
 			var _model = _self.getView().getModel();
 			_self.empDetails = {};
+
+			this._formFragments = {};
+			//this._showFormFragment('Display');
 
 			sap.ui.core.BusyIndicator.show();
 
@@ -36,16 +61,16 @@ sap.ui.define([
 
 					console.log("Previous positions")
 					console.log(_self.empDetails.ToItems.results)
-					
-					for(let item in _self.empDetails.ToItems.results){
-						var pDay=parseInt(_self.empDetails.ToItems.results[item].PeriodDay);
+
+					for (let item in _self.empDetails.ToItems.results) {
+						var pDay = parseInt(_self.empDetails.ToItems.results[item].PeriodDay);
 						pDay = pDay > 0 ? (pDay + " Day" + (pDay > 1 ? "s" : "")) : "";
-						var pMonth=parseFloat(_self.empDetails.ToItems.results[item].PeriodMonth,0);
+						var pMonth = parseFloat(_self.empDetails.ToItems.results[item].PeriodMonth, 0);
 						pMonth = pMonth > 0 ? (pMonth + " Month" + (pMonth > 1 ? "s" : "")) : "";
-						var pYear=parseFloat(_self.empDetails.ToItems.results[item].PeriodYear,0);
+						var pYear = parseFloat(_self.empDetails.ToItems.results[item].PeriodYear, 0);
 						pYear = pYear > 0 ? (pYear + " Year" + (pYear > 1 ? "s" : "")) : "";
-						
-						_self.empDetails.ToItems.results[item].Period=pYear+" "+pMonth+" "+pDay;
+
+						_self.empDetails.ToItems.results[item].Period = pYear + " " + pMonth + " " + pDay;
 					}
 
 					_self.getView().setModel(new JSONModel(_self.empDetails.ToItems), "positions");
@@ -55,6 +80,7 @@ sap.ui.define([
 						pattern: "dd-MM-yyyy"
 					});
 					_self.empDetails.ExDOBText = oDateFormat.format(_self.empDetails.ExDob);
+					_self.empDetails.ExDOJText = oDateFormat.format(_self.empDetails.ExDoj);
 
 					//Period of Promotion
 					var proDay = parseInt(_self.empDetails.ExPromPeriodDay);
@@ -267,7 +293,7 @@ sap.ui.define([
 
 				that.resizableDialog = new Dialog({
 					title: 'Details of last three position (Excluding Present)',
-					contentWidth: "620px",
+					contentWidth: "650px",
 					contentHeight: "200px",
 					resizable: true,
 					content: oTable,
@@ -284,7 +310,7 @@ sap.ui.define([
 			}
 
 			that.resizableDialog.open();
-			
+
 			//this._getDialog().open();
 		},
 		_getDialog: function() {
@@ -296,6 +322,6 @@ sap.ui.define([
 		},
 		onCloseDialog: function() {
 			this._getDialog().close();
-		},
+		}
 	});
 });

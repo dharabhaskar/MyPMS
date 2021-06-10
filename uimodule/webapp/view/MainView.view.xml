@@ -17,81 +17,12 @@
 						<m:ObjectAttribute title="Period of Review" text="{emp>/ExPeriod}"/>
 						<m:ObjectAttribute title="Division" text="{emp>/ExDivision}"/>
 						<m:ObjectAttribute title="Location" text="{emp>/ExLocation}"/>
+						<m:ObjectAttribute title="Date of Joining" text="{emp>/ExDOJText}"/>
 						<m:ObjectAttribute title="Head of Department" text="{emp>/ExHodName}"/>
 						<m:ObjectAttribute title="Head of Location" text="{emp>/ExHolName}"/>
 					</m:ObjectHeader>
-					<m:Panel headerText="Self Appraisal">
-						<f:SimpleForm editable="true" layout="ResponsiveGridLayout" labelSpanL="4" labelSpanM="12" adjustLabelSpan="false" emptySpanL="0"
-							emptySpanM="0" columnsL="2" columnsM="2">
-							<f:content>
-								<m:Label text="Major tasks achived (Not more than three) {i18n>notMoreThan150}">
-									<m:layoutData>
-										<layout:GridData span="L12 M12 S12"/>
-									</m:layoutData>
-								</m:Label>
-								<m:TextArea rows="2" maxLength="150" id="achievement1" value="{appraisalData>/MajorTask1}">
-									<m:layoutData>
-										<layout:GridData span="L12 M12 S12"/>
-									</m:layoutData>
-								</m:TextArea>
-								<m:TextArea rows="2" maxLength="150" id="achievement2" value="{appraisalData>/MajorTask2}">
-									<m:layoutData>
-										<layout:GridData span="L12 M12 S12"/>
-									</m:layoutData>
-								</m:TextArea>
-								<m:TextArea rows="2" maxLength="150" id="achievement3" value="{appraisalData>/MajorTask3}">
-									<m:layoutData>
-										<layout:GridData span="L12 M12 S12"/>
-									</m:layoutData>
-								</m:TextArea>
-							</f:content>
-							<f:content>
-								<m:Label text="Constraints Faced {i18n>notMoreThan150}">
-									<m:layoutData>
-										<layout:GridData span="L12 M12 S12"/>
-									</m:layoutData>
-								</m:Label>
-								<m:TextArea rows="4" maxLength="150" value="{appraisalData>/ConstrainFaced}">
-									<m:layoutData>
-										<layout:GridData span="L12 M12 S12"/>
-									</m:layoutData>
-								</m:TextArea>
-							</f:content>
-							<f:content>
-								<m:Label text="Major Failures (Not less than two) {i18n>notMoreThan150}">
-									<m:layoutData>
-										<layout:GridData span="L12 M12 S12"/>
-									</m:layoutData>
-								</m:Label>
-								<m:TextArea rows="2" maxLength="150" id="failure1" value="{appraisalData>/Failure1}">
-									<m:layoutData>
-										<layout:GridData span="L12 M12 S12"/>
-									</m:layoutData>
-								</m:TextArea>
-								<m:TextArea rows="2" maxLength="150" id="failure2" value="{appraisalData>/Failure2}">
-									<m:layoutData>
-										<layout:GridData span="L12 M12 S12"/>
-									</m:layoutData>
-								</m:TextArea>
-								<m:TextArea rows="2" maxLength="150" id="failure3" value="{appraisalData>/Failure3}">
-									<m:layoutData>
-										<layout:GridData span="L12 M12 S12"/>
-									</m:layoutData>
-								</m:TextArea>
-							</f:content>
-							<f:content>
-								<m:Label text="Training &amp; Development needs required for being more effective {i18n>notMoreThan150}">
-									<m:layoutData>
-										<layout:GridData span="L12 M12 S12"/>
-									</m:layoutData>
-								</m:Label>
-								<m:TextArea rows="4" maxLength="150" value="{appraisalData>/TrainingDevNeed}">
-									<m:layoutData>
-										<layout:GridData span="L12 M12 S12"/>
-									</m:layoutData>
-								</m:TextArea>
-							</f:content>
-						</f:SimpleForm>
+					<m:Panel id="fragPanel" headerText="Self Appraisal">
+						<core:Fragment  id="fragment1"  fragmentName="com.infocus.MyPMS.view.SelfAppraisalDisplay" type="XML" />
 					</m:Panel>
 				</m:VBox>
 			</m:content>
