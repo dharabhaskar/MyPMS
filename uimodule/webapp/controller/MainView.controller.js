@@ -59,8 +59,8 @@ sap.ui.define([
 
 					_self.empDetails = response.results[0];
 
-					console.log("Previous positions")
-					console.log(_self.empDetails.ToItems.results)
+					//console.log("Previous positions")
+					//console.log(_self.empDetails.ToItems.results)
 
 					for (let item in _self.empDetails.ToItems.results) {
 						var pDay = parseInt(_self.empDetails.ToItems.results[item].PeriodDay);
@@ -130,14 +130,12 @@ sap.ui.define([
 			});
 		},
 		handleIAgreePopoverPress: function(oEvent) {
-			console.log(oEvent);
+			//console.log(oEvent);
 			var oButton = oEvent.getSource(),
 				oView = this.getView();
 
-			console.log(oView);
-
 			// create popover
-			if (!this._pPopover) {
+			/*if (!this._pPopover) {
 				this._pPopover = Fragment.load({
 					id: oView.getId(),
 					name: "com.infocus.MyPMS.view.AgreePopover",
@@ -150,26 +148,41 @@ sap.ui.define([
 			}
 			this._pPopover.then(function(oPopover) {
 				oPopover.openBy(oButton);
-			});
+			});*/
+			// create popover
+			if (!this._oPopover) {
+				this._oPopover = sap.ui.xmlfragment(oView.getId(), "com.infocus.MyPMS.view.AgreePopover", this)
+				oView.addDependent(this._oPopover);
+			}
+
+			this._oPopover.openBy(oButton);
 		},
 		onAgreeSelectionChanged: function(oEvent) {
 			this.IAgreeCheckboxSelected = oEvent.getParameters().selected;
 			this.byId("agree").setEnabled(this.IAgreeCheckboxSelected);
 		},
+		onExit: function() {
+			//Clean up the popovers...
+			if (this._oPopover) {
+				this._oPopover.destroy();
+			}
+		},
 		handleSaveAppraisalPress: function() {
 			//Calling the save data function.
-			this.byId("myPopover").close();
-			this.createData();
+			var data = this.getView().getModel("appraisalData").oData;
+
+			this._oPopover.close();
+			this.createData("Y");
 		},
 		handleCancelAppraisalPress: function() {
-			this.byId("myPopover").close();
-
+			this._oPopover.close();
 		},
 		handleSaveAsDraft: function() {
-			MessageToast.show("You clicked on save as draft. (No service attached!!!)")
+
+			this.createData("N");
 		},
 		handleMaxCharValidation: function(oControlEvent) {
-			console.log(oControlEvent);
+			//console.log(oControlEvent);
 			if (!oControlEvent.getParameters.value) {
 				oControlEvent.getSource().setValueState(sap.ui.core.ValueState.Error);
 			}
@@ -181,7 +194,7 @@ sap.ui.define([
 			_self.getView().getModel().read(appraisalGetURL, {
 				success: function(response) {
 					sap.ui.core.BusyIndicator.hide();
-					console.log(response);
+					//console.log(response);
 
 					_self.appraisalData = response;
 					_self.getView().setModel(new JSONModel(_self.appraisalData), "appraisalData");
@@ -227,11 +240,18 @@ sap.ui.define([
 			}
 			return false;
 		},
-		createData: function() {
-			var data = this.getView().getModel("appraisalData").oData;
-			sap.ui.core.BusyIndicator.show();
+		createData: function(saveParmanent) {
 
+			sap.ui.core.BusyIndicator.show();
+			
+			//Fetch the model data for Self Appraisal
+			var data = this.getView().getModel("appraisalData").oData;
+			//Setting additional properties....
+			data.Saveflag = saveParmanent;
 			data.Empid = this.empId;
+			
+			console.log('Sending Appraisal Data to server...');
+			console.log(data);
 
 			if (!this.validateFailure()) {
 				MessageBox.error("You must add atleast two failures.");
@@ -244,7 +264,7 @@ sap.ui.define([
 				odataModel.create("/empappraiseSet", data, {
 					success: function(data, response) {
 						sap.ui.core.BusyIndicator.hide();
-						MessageBox.success("Your appraisal saved successfully...");
+						MessageBox.success("Your appraisal saved " + (saveParmanent === "N" ? "as draft" : "") + " successfully...");
 						console.log(response);
 					},
 					error: function(error) {
