@@ -22,7 +22,7 @@
 						<m:ObjectAttribute title="Head of Location" text="{emp>/ExHolName}"/>
 					</m:ObjectHeader>
 					<m:Panel id="fragPanel" headerText="Self Appraisal">
-						<core:Fragment  id="fragment1"  fragmentName="com.infocus.MyPMS.view.SelfAppraisalDisplay" type="XML" />
+						<core:Fragment  id="frag1"  fragmentName="com.infocus.MyPMS.view.SelfAppraisalDisplay" type="XML" />
 					</m:Panel>
 				</m:VBox>
 			</m:content>

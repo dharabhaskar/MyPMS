@@ -9,7 +9,7 @@
 					<layout:GridData span="L12 M12 S12"/>
 				</m:layoutData>
 			</m:Label>
-			<m:TextArea rows="2" maxLength="150" id="achievement1" value="{appraisalData>/MajorTask1}">
+			<m:TextArea rows="2" maxLength="150" id="achievement1" value="{appraisalData>/MajorTask1}" >
 				<m:layoutData>
 					<layout:GridData span="L12 M12 S12"/>
 				</m:layoutData>
@@ -31,7 +31,7 @@
 					<layout:GridData span="L12 M12 S12"/>
 				</m:layoutData>
 			</m:Label>
-			<m:TextArea rows="4" maxLength="150" value="{appraisalData>/ConstrainFaced}">
+			<m:TextArea rows="4" maxLength="150" id="constrainFaced" value="{appraisalData>/ConstrainFaced}">
 				<m:layoutData>
 					<layout:GridData span="L12 M12 S12"/>
 				</m:layoutData>
@@ -65,7 +65,7 @@
 					<layout:GridData span="L12 M12 S12"/>
 				</m:layoutData>
 			</m:Label>
-			<m:TextArea rows="4" maxLength="150" value="{appraisalData>/TrainingDevNeed}">
+			<m:TextArea rows="4" maxLength="150" id="trainingDevNeed" value="{appraisalData>/TrainingDevNeed}">
 				<m:layoutData>
 					<layout:GridData span="L12 M12 S12"/>
 				</m:layoutData>

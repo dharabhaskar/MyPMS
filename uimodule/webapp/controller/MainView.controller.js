@@ -198,6 +198,22 @@ sap.ui.define([
 
 					_self.appraisalData = response;
 					_self.getView().setModel(new JSONModel(_self.appraisalData), "appraisalData");
+					
+					var saveFlag='Y';
+					if(saveFlag==='Y'){
+						_self.getView().byId("frag1--achievement1").setEditable(false);
+						_self.getView().byId("frag1--achievement2").setEditable(false);
+						_self.getView().byId("frag1--achievement3").setEditable(false);
+						
+						_self.getView().byId("frag1--failure1").setEditable(false);
+						_self.getView().byId("frag1--failure2").setEditable(false);
+						_self.getView().byId("frag1--failure3").setEditable(false);
+						
+						_self.getView().byId("frag1--constrainFaced").setEditable(false);
+						_self.getView().byId("frag1--trainingDevNeed").setEditable(false);
+						//_self.getView().byId("frag1--achievement1").setEditable(false);
+					}
+					
 				},
 				error: function(error) {
 					sap.ui.core.BusyIndicator.hide();
