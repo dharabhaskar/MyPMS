@@ -16,7 +16,7 @@
     }
   ],
   "mockpreview": {
-    "mockUri": "/sap/opu/odata/sap/ZPMS_SELF_SRV",
+    "mockUri": "/sap/opu/odata/sap/ZPMS_SELF_SRV/",
     "metadataFilePath": "model/metadata.xml",
     "loadJSONFiles": false,
     "loadCustomRequests": false,

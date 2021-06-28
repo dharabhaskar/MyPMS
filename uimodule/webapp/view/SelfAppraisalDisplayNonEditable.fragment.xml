@@ -1,0 +1,75 @@
+<core:FragmentDefinition  xmlns:mvc="sap.ui.core.mvc" xmlns="sap.uxap"
+	xmlns:layout="sap.ui.layout" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form" xmlns:m="sap.m" xmlns:table="sap.ui.table"
+	xmlns:fx="sap.f" xmlns:l="sap.ui.layout">
+	<f:SimpleForm editable="false" layout="ResponsiveGridLayout" labelSpanL="4" labelSpanM="12" adjustLabelSpan="false" emptySpanL="0"
+		emptySpanM="0" columnsL="2" columnsM="2">
+		<f:content>
+			<m:Label text="Major tasks achived (Not more than three)">
+				<m:layoutData>
+					<layout:GridData span="L12 M12 S12"/>
+				</m:layoutData>
+			</m:Label>
+			<m:Text id="ne_achievement1" text="{appraisalData>/MajorTask1}" >
+				<m:layoutData>
+					<layout:GridData span="L12 M12 S12"/>
+				</m:layoutData>
+			</m:Text>
+			<m:Text id="ne_achievement2" text="{appraisalData>/MajorTask2}">
+				<m:layoutData>
+					<layout:GridData span="L12 M12 S12"/>
+				</m:layoutData>
+			</m:Text>
+			<m:Text id="ne_achievement3" text="{appraisalData>/MajorTask3}">
+				<m:layoutData>
+					<layout:GridData span="L12 M12 S12"/>
+				</m:layoutData>
+			</m:Text>
+		</f:content>
+		<f:content>
+			<m:Label text="Constraints Faced">
+				<m:layoutData>
+					<layout:GridData span="L12 M12 S12"/>
+				</m:layoutData>
+			</m:Label>
+			<m:Text id="ne_constrainFaced" text="{appraisalData>/ConstrainFaced}">
+				<m:layoutData>
+					<layout:GridData span="L12 M12 S12"/>
+				</m:layoutData>
+			</m:Text>
+		</f:content>
+		<f:content>
+			<m:Label text="Major Failures (Not less than two)">
+				<m:layoutData>
+					<layout:GridData span="L12 M12 S12"/>
+				</m:layoutData>
+			</m:Label>
+			<m:Text id="ne_failure1" text="{appraisalData>/Failure1}">
+				<m:layoutData>
+					<layout:GridData span="L12 M12 S12"/>
+				</m:layoutData>
+			</m:Text>
+			<m:Text id="ne_failure2" text="{appraisalData>/Failure2}">
+				<m:layoutData>
+					<layout:GridData span="L12 M12 S12"/>
+				</m:layoutData>
+			</m:Text>
+			<m:Text id="ne_failure3" text="{appraisalData>/Failure3}">
+				<m:layoutData>
+					<layout:GridData span="L12 M12 S12"/>
+				</m:layoutData>
+			</m:Text>
+		</f:content>
+		<f:content>
+			<m:Label text="Training &amp; Development needs required for being more effective">
+				<m:layoutData>
+					<layout:GridData span="L12 M12 S12"/>
+				</m:layoutData>
+			</m:Label>
+			<m:Text id="ne_trainingDevNeed" text="{appraisalData>/TrainingDevNeed}">
+				<m:layoutData>
+					<layout:GridData span="L12 M12 S12"/>
+				</m:layoutData>
+			</m:Text>
+		</f:content>
+	</f:SimpleForm>
+</core:FragmentDefinition>

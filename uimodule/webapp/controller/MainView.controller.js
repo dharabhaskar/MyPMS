@@ -17,10 +17,7 @@ sap.ui.define([
 				oView = this.getView();
 
 			if (!pFormFragment) {
-				pFormFragment = Fragment.load({
-					id: oView.getId(),
-					name: "com.infocus.MyPMS.view.SelfAppraisal" + sFragmentName
-				});
+				pFormFragment = sap.ui.xmlfragment(oView.getId(), "com.infocus.MyPMS.view.SelfAppraisal" + sFragmentName, this);
 				this._formFragments[sFragmentName] = pFormFragment;
 			}
 
@@ -30,9 +27,7 @@ sap.ui.define([
 			var oPage = this.byId("fragPanel");
 
 			oPage.removeAllContent();
-			this._getFormFragment(sFragmentName).then(function(oVBox) {
-				oPage.insertContent(oVBox);
-			});
+			oPage.insertContent(this._getFormFragment(sFragmentName));
 		},
 		onInit: function() {
 
@@ -103,18 +98,6 @@ sap.ui.define([
 					var basicPay = parseFloat(_self.empDetails.ExCurrBasic).toFixed(2);
 					_self.empDetails.ExCurrBasic = basicPay;
 
-					//Basic Pay format
-					/*var oFormat = NumberFormat.getCurrencyInstance({
-						"currencyCode": false,
-						"customCurrencies": {
-							"RS": {
-								"symbol": "\u0243",
-								"decimals": 2
-							}
-						}
-					});
-
-					_self.empDetails.ExCurrBasic=oFormat.format(_self.empDetails.ExCurrBasic, "RS"); // "Ƀ 123.457"*/
 
 					_self.getView().setModel(new JSONModel(_self.empDetails), "emp");
 
@@ -198,22 +181,11 @@ sap.ui.define([
 
 					_self.appraisalData = response;
 					_self.getView().setModel(new JSONModel(_self.appraisalData), "appraisalData");
-					
-					var saveFlag='Y';
-					if(saveFlag==='Y'){
-						_self.getView().byId("frag1--achievement1").setEditable(false);
-						_self.getView().byId("frag1--achievement2").setEditable(false);
-						_self.getView().byId("frag1--achievement3").setEditable(false);
-						
-						_self.getView().byId("frag1--failure1").setEditable(false);
-						_self.getView().byId("frag1--failure2").setEditable(false);
-						_self.getView().byId("frag1--failure3").setEditable(false);
-						
-						_self.getView().byId("frag1--constrainFaced").setEditable(false);
-						_self.getView().byId("frag1--trainingDevNeed").setEditable(false);
-						//_self.getView().byId("frag1--achievement1").setEditable(false);
-					}
-					
+
+					//Switch to Noneditable mode if the saveFlag is Y
+					var saveFlag = response.Saveflag;
+					_self.toggeleNonEditableMode(saveFlag);
+
 				},
 				error: function(error) {
 					sap.ui.core.BusyIndicator.hide();
@@ -239,6 +211,39 @@ sap.ui.define([
 				}
 			});
 		},
+		toggeleNonEditableMode: function(saveFlag) {
+			var _self=this;
+			console.log('Saveflag value: ' + saveFlag);
+			/*_self._showFormFragment("Display");
+			if (saveFlag === 'Y') {
+				_self.getView().byId("frag1--achievement1").setEditable(false);
+				_self.getView().byId("frag1--achievement2").setEditable(false);
+				_self.getView().byId("frag1--achievement3").setEditable(false);
+	
+				_self.getView().byId("frag1--failure1").setEditable(false);
+				_self.getView().byId("frag1--failure2").setEditable(false);
+				_self.getView().byId("frag1--failure3").setEditable(false);
+	
+				_self.getView().byId("frag1--constrainFaced").setEditable(false);
+				_self.getView().byId("frag1--trainingDevNeed").setEditable(false);
+				//_self.getView().byId("frag1--achievement1").setEditable(false);
+			}*/
+			/*if (saveFlag === 'Y') {
+				_self._showFormFragment("DisplayNonEditable");
+			} else {
+				_self._showFormFragment("Display");
+			}*/
+			//saveFlag='N';
+			if(saveFlag==='Y'){
+				_self.getView().byId("fragPanel1").setVisible(false);
+				_self.getView().byId("fragPanel2").setVisible(true);
+				_self.getView().byId("otbFooter").setVisible(false);
+			}else{
+				_self.getView().byId("fragPanel1").setVisible(true);
+				_self.getView().byId("fragPanel2").setVisible(false);
+				_self.getView().byId("otbFooter").setVisible(true);
+			}
+		},
 		validateFailure: function() {
 			var data = this.getView().getModel("appraisalData").oData;
 			var isF1 = data.Failure1 && data.Failure1.trim().length > 0;
@@ -257,15 +262,15 @@ sap.ui.define([
 			return false;
 		},
 		createData: function(saveParmanent) {
-
+			var _self=this;
 			sap.ui.core.BusyIndicator.show();
-			
+
 			//Fetch the model data for Self Appraisal
 			var data = this.getView().getModel("appraisalData").oData;
 			//Setting additional properties....
 			data.Saveflag = saveParmanent;
 			data.Empid = this.empId;
-			
+
 			console.log('Sending Appraisal Data to server...');
 			console.log(data);
 
@@ -281,7 +286,10 @@ sap.ui.define([
 					success: function(data, response) {
 						sap.ui.core.BusyIndicator.hide();
 						MessageBox.success("Your appraisal saved " + (saveParmanent === "N" ? "as draft" : "") + " successfully...");
-						console.log(response);
+						//console.log(response);
+						//Switch to Noneditable mode if the saveFlag is Y
+						var saveFlag = data.Saveflag;
+						_self.toggeleNonEditableMode(saveFlag);
 					},
 					error: function(error) {
 						sap.ui.core.BusyIndicator.hide();

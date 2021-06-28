@@ -21,13 +21,17 @@
 						<m:ObjectAttribute title="Head of Department" text="{emp>/ExHodName}"/>
 						<m:ObjectAttribute title="Head of Location" text="{emp>/ExHolName}"/>
 					</m:ObjectHeader>
-					<m:Panel id="fragPanel" headerText="Self Appraisal">
+					<m:Panel id="fragPanel1" headerText="Self Appraisal" visible="false">
 						<core:Fragment  id="frag1"  fragmentName="com.infocus.MyPMS.view.SelfAppraisalDisplay" type="XML" />
 					</m:Panel>
+					<m:Panel id="fragPanel2" headerText="Self Appraisal" visible="false">
+						<core:Fragment  id="frag2"  fragmentName="com.infocus.MyPMS.view.SelfAppraisalDisplayNonEditable" type="XML" />
+					</m:Panel>
+					
 				</m:VBox>
 			</m:content>
 			<m:footer>
-				<m:OverflowToolbar id="otbFooter">
+				<m:OverflowToolbar id="otbFooter" visible="false">
 					<m:ToolbarSpacer/>
 					<m:Button type="Emphasized" text="Save As Draft" press="handleSaveAsDraft"/>
 					<m:Button type="Emphasized" text="Save" press="handleIAgreePopoverPress"/>
