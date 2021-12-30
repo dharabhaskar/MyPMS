@@ -3,13 +3,22 @@
 		<Table id="tab1" items="{positions>/results}">
 			<columns>
 				<Column width="12em">
-					<Text text="Position"/>
+					<Text text="Name"/>
 				</Column>
 				<Column width="12em">
-					<Text text="Period"/>
+					<Text text="Date"/>
 				</Column>
 				<Column width="12em">
-					<Text text="Location"/>
+					<Text text="CheckIn"/>
+				</Column>
+				<Column width="12em">
+					<Text text="CheckOut"/>
+				</Column>
+				<Column width="12em">
+					<Text text="Status"/>
+				</Column>
+				<Column width="12em">
+					<Text text="Comment"/>
 				</Column>
 			</columns>
 			<items>
